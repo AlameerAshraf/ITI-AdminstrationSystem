@@ -11,6 +11,8 @@ namespace AdminstrationSysytem_v1.Models
     {
         [Key]
         public int Id { get; set; }
+        public int InstructorEvaluation { get; set; }
+        public int CourseStatues { get; set; }
 
         [ForeignKey("Instructor")]
         [Column("InstructorId")]

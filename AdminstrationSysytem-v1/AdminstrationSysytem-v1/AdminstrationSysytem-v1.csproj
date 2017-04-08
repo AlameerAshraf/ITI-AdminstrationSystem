@@ -253,6 +253,10 @@
     <Compile Include="Migrations\201704082306586_h17.Designer.cs">
       <DependentUpon>201704082306586_h17.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704082317341_h18.cs" />
+    <Compile Include="Migrations\201704082317341_h18.Designer.cs">
+      <DependentUpon>201704082317341_h18.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Instructors.cs" />
     <Compile Include="Models\Instructor_Corse_InDepartment.cs" />
@@ -378,6 +382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704082306586_h17.resx">
       <DependentUpon>201704082306586_h17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704082317341_h18.resx">
+      <DependentUpon>201704082317341_h18.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
