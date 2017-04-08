@@ -16,6 +16,7 @@ namespace AdminstrationSysytem_v1.Models
         public int TotalGrade { get; set; }
 
         public virtual List<Instructors> Instructors { get; set; }
+        public virtual List<Departments> Departments { get; set; }
 
     }
 }

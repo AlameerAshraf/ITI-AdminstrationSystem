@@ -34,6 +34,7 @@ namespace AdminstrationSysytem_v1.Models
 
         [InverseProperty("Department")]
         public virtual List<Instructors> Instructors { get; set; }
+        public virtual List<Courses> Courses { get; set; }
 
     }
 }
