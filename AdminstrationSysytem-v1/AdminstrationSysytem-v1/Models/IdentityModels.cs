@@ -21,7 +21,7 @@ namespace AdminstrationSysytem_v1.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("ITI", throwIfV1Schema: false)
         {
         }
 
@@ -29,5 +29,9 @@ namespace AdminstrationSysytem_v1.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Student> StudentS { get; set; }
+        public DbSet<Qualifications> Qualifications { get; set; }
+        public DbSet<Instructors> Instructors { get; set; }
     }
 }
