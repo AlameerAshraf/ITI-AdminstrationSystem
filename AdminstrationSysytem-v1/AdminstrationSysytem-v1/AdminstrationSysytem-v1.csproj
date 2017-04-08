@@ -225,8 +225,37 @@
     <Compile Include="Migrations\201704082010020_h9.Designer.cs">
       <DependentUpon>201704082010020_h9.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704082053396_h10.cs" />
+    <Compile Include="Migrations\201704082053396_h10.Designer.cs">
+      <DependentUpon>201704082053396_h10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704082055434_h11.cs" />
+    <Compile Include="Migrations\201704082055434_h11.Designer.cs">
+      <DependentUpon>201704082055434_h11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704082059400_h12.cs" />
+    <Compile Include="Migrations\201704082059400_h12.Designer.cs">
+      <DependentUpon>201704082059400_h12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704082100477_h13.cs" />
+    <Compile Include="Migrations\201704082100477_h13.Designer.cs">
+      <DependentUpon>201704082100477_h13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704082110281_h14.cs" />
+    <Compile Include="Migrations\201704082110281_h14.Designer.cs">
+      <DependentUpon>201704082110281_h14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704082257535_h15.cs" />
+    <Compile Include="Migrations\201704082257535_h15.Designer.cs">
+      <DependentUpon>201704082257535_h15.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704082306586_h17.cs" />
+    <Compile Include="Migrations\201704082306586_h17.Designer.cs">
+      <DependentUpon>201704082306586_h17.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Instructors.cs" />
+    <Compile Include="Models\Instructor_Corse_InDepartment.cs" />
     <Compile Include="Models\QuestionAnswers.cs" />
     <Compile Include="Models\Courses.cs" />
     <Compile Include="Models\Departments.cs" />
@@ -328,6 +357,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704082010020_h9.resx">
       <DependentUpon>201704082010020_h9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704082053396_h10.resx">
+      <DependentUpon>201704082053396_h10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704082055434_h11.resx">
+      <DependentUpon>201704082055434_h11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704082059400_h12.resx">
+      <DependentUpon>201704082059400_h12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704082100477_h13.resx">
+      <DependentUpon>201704082100477_h13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704082110281_h14.resx">
+      <DependentUpon>201704082110281_h14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704082257535_h15.resx">
+      <DependentUpon>201704082257535_h15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704082306586_h17.resx">
+      <DependentUpon>201704082306586_h17.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

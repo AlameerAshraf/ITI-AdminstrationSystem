@@ -33,5 +33,6 @@ namespace AdminstrationSysytem_v1.Models
         public Departments Department { get; set; }
 
         public virtual List<Courses> Courses { get; set; }
+
     }
 }

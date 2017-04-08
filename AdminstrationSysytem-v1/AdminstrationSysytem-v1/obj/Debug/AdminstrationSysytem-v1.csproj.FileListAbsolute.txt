@@ -87,3 +87,10 @@ C:\Users\apple\Documents\GitHub\ITI-AdminstrationSystem\AdminstrationSysytem-v1\
 C:\Users\apple\Documents\GitHub\ITI-AdminstrationSystem\AdminstrationSysytem-v1\AdminstrationSysytem-v1\obj\Debug\AdminstrationSysytem_v1.Migrations.h7.resources
 C:\Users\apple\Documents\GitHub\ITI-AdminstrationSystem\AdminstrationSysytem-v1\AdminstrationSysytem-v1\obj\Debug\AdminstrationSysytem_v1.Migrations.h8.resources
 C:\Users\apple\Documents\GitHub\ITI-AdminstrationSystem\AdminstrationSysytem-v1\AdminstrationSysytem-v1\obj\Debug\AdminstrationSysytem_v1.Migrations.h9.resources
+C:\Users\apple\Documents\GitHub\ITI-AdminstrationSystem\AdminstrationSysytem-v1\AdminstrationSysytem-v1\obj\Debug\AdminstrationSysytem_v1.Migrations.h10.resources
+C:\Users\apple\Documents\GitHub\ITI-AdminstrationSystem\AdminstrationSysytem-v1\AdminstrationSysytem-v1\obj\Debug\AdminstrationSysytem_v1.Migrations.h11.resources
+C:\Users\apple\Documents\GitHub\ITI-AdminstrationSystem\AdminstrationSysytem-v1\AdminstrationSysytem-v1\obj\Debug\AdminstrationSysytem_v1.Migrations.h12.resources
+C:\Users\apple\Documents\GitHub\ITI-AdminstrationSystem\AdminstrationSysytem-v1\AdminstrationSysytem-v1\obj\Debug\AdminstrationSysytem_v1.Migrations.h13.resources
+C:\Users\apple\Documents\GitHub\ITI-AdminstrationSystem\AdminstrationSysytem-v1\AdminstrationSysytem-v1\obj\Debug\AdminstrationSysytem_v1.Migrations.h14.resources
+C:\Users\apple\Documents\GitHub\ITI-AdminstrationSystem\AdminstrationSysytem-v1\AdminstrationSysytem-v1\obj\Debug\AdminstrationSysytem_v1.Migrations.h15.resources
+C:\Users\apple\Documents\GitHub\ITI-AdminstrationSystem\AdminstrationSysytem-v1\AdminstrationSysytem-v1\obj\Debug\AdminstrationSysytem_v1.Migrations.h17.resources
