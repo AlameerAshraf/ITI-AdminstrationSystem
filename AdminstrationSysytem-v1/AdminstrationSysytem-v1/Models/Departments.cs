@@ -22,11 +22,15 @@ namespace AdminstrationSysytem_v1.Models
 
         public virtual List<Student> Students { get; set; }
 
+
+
         [ForeignKey("Instructor")]
         [Column("ManagerId")]
         public string InstructorId { get; set; }
         public Instructors Instructor { get; set; }
         
+
+
 
         [InverseProperty("Department")]
         public virtual List<Instructors> Instructors { get; set; }

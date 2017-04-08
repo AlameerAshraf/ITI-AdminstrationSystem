@@ -217,6 +217,10 @@
     <Compile Include="Migrations\201704081929538_h7.Designer.cs">
       <DependentUpon>201704081929538_h7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704082004223_h8.cs" />
+    <Compile Include="Migrations\201704082004223_h8.Designer.cs">
+      <DependentUpon>201704082004223_h8.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Instructors.cs" />
     <Compile Include="Models\QuestionAnswers.cs" />
@@ -314,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704081929538_h7.resx">
       <DependentUpon>201704081929538_h7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704082004223_h8.resx">
+      <DependentUpon>201704082004223_h8.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

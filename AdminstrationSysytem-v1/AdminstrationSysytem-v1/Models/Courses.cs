@@ -14,5 +14,8 @@ namespace AdminstrationSysytem_v1.Models
         public int LectureDuration { get; set; }
         public int LabDuration { get; set; }
         public int TotalGrade { get; set; }
+
+        public virtual List<Instructors> Instructors { get; set; }
+
     }
 }
