@@ -33,5 +33,6 @@ namespace AdminstrationSysytem_v1.Models
         public DbSet<Student> StudentS { get; set; }
         public DbSet<Qualifications> Qualifications { get; set; }
         public DbSet<Instructors> Instructors { get; set; }
+        public DbSet<Departments> Departments { get; set; }
     }
 }

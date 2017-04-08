@@ -3,10 +3,20 @@ namespace AdminstrationSysytem_v1.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class s2 : DbMigration
+    public partial class h4 : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Departments",
+                c => new
+                    {
+                        DepartmentId = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Capacity = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.DepartmentId);
+            
             CreateTable(
                 "dbo.AspNetUsers",
                 c => new
@@ -70,11 +80,8 @@ namespace AdminstrationSysytem_v1.Migrations
                 c => new
                     {
                         QualificationName = c.String(nullable: false, maxLength: 128),
-                        InstructorId = c.String(nullable: false, maxLength: 128),
                     })
-                .PrimaryKey(t => new { t.QualificationName, t.InstructorId })
-                .ForeignKey("dbo.Instructors", t => t.InstructorId)
-                .Index(t => t.InstructorId);
+                .PrimaryKey(t => t.QualificationName);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -93,10 +100,9 @@ namespace AdminstrationSysytem_v1.Migrations
                         Id = c.String(nullable: false, maxLength: 128),
                         Name = c.String(),
                         Address = c.String(),
+                        GraduationYear = c.String(),
+                        Status = c.String(),
                         BD = c.DateTime(nullable: false),
-                        IsMarried = c.Boolean(nullable: false),
-                        GraduationYear = c.DateTime(nullable: false),
-                        Status = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.Id)
@@ -111,26 +117,29 @@ namespace AdminstrationSysytem_v1.Migrations
                         Lname = c.String(),
                         Address = c.String(),
                         BD = c.DateTime(nullable: false),
+                        DepartmentId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.Id)
-                .Index(t => t.Id);
+                .ForeignKey("dbo.Departments", t => t.DepartmentId, cascadeDelete: true)
+                .Index(t => t.Id)
+                .Index(t => t.DepartmentId);
             
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.Student", "DepartmentId", "dbo.Departments");
             DropForeignKey("dbo.Student", "Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.Instructors", "Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Qualifications", "InstructorId", "dbo.Instructors");
+            DropIndex("dbo.Student", new[] { "DepartmentId" });
             DropIndex("dbo.Student", new[] { "Id" });
             DropIndex("dbo.Instructors", new[] { "Id" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.Qualifications", new[] { "InstructorId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
@@ -144,6 +153,7 @@ namespace AdminstrationSysytem_v1.Migrations
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
+            DropTable("dbo.Departments");
         }
     }
 }
