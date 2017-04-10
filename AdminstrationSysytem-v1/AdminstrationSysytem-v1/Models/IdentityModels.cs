@@ -39,12 +39,6 @@ namespace AdminstrationSysytem_v1.Models
         public DbSet<Instructor_Corse_InDepartment> InstCrsDep { get; set; }
 
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-        }
-
 
     }
 }

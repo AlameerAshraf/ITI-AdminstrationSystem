@@ -9,24 +9,19 @@ namespace AdminstrationSysytem_v1.Models
 {
     public class Instructor_Corse_InDepartment
     {
-        [Key]
-        public int Id { get; set; }
         public int InstructorEvaluation { get; set; }
         public int CourseStatues { get; set; }
 
-        [ForeignKey("Instructor")]
-        [Column("InstructorId")]
+        [Column("InstructorId", Order = 0), Key , ForeignKey("Instructor")]
         public string InstructorId { get; set; }
         public Instructors Instructor { get; set; }
 
-
-        [ForeignKey("Course")]
-        [Column("CoursesId")]
+        [Column("CoursesId", Order = 1), Key, ForeignKey("Course")]
         public int CoursId { get; set; }
         public Courses Course { get; set; }
 
-        [ForeignKey("Department")]
-        [Column("DepartmentId")]
+
+        [Column("DepartmentId", Order = 2), Key, ForeignKey("Department")]
         public int DepartmentId { get; set; }
         public Departments Department { get; set; }
     }
