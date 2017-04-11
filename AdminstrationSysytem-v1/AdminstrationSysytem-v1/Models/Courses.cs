@@ -17,6 +17,9 @@ namespace AdminstrationSysytem_v1.Models
 
         public virtual List<Instructors> Instructors { get; set; }
         public virtual List<Departments> Departments { get; set; }
+        public virtual List<Student> Students { get; set; }
+        public virtual List<Questions> Questions { get; set; }
+
 
 
 

@@ -15,10 +15,11 @@ namespace AdminstrationSysytem_v1.Models
         {
             get
             {
-                return StartsFrom - EndsIn; 
+                return StartsFrom - EndsIn;
             }
         }
 
         public int Subject { get; set; }
+        public virtual List<Questions> Questions { get; set; }
     }
 }

@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AdminstrationSysytem_v1.Models
 {
-    public class Instructor_Corse_InDepartment
+    public class Course_Student_Instructor
     {
-
-        public int CourseStatues { get; set; }
+        public int InstructorEvaluation { get; set; }
+        public int StudentLabDegree { get; set; }
 
         [Column("InstructorId", Order = 0), Key, ForeignKey("Instructor")]
         public string InstructorId { get; set; }
@@ -21,8 +21,8 @@ namespace AdminstrationSysytem_v1.Models
         public Courses Course { get; set; }
 
 
-        [Column("DepartmentId", Order = 2), Key, ForeignKey("Department")]
-        public int DepartmentId { get; set; }
-        public Departments Department { get; set; }
+        [Column("StudentId", Order = 2), Key, ForeignKey("Student")]
+        public string StudentId { get; set; }
+        public Student Student { get; set; }
     }
 }

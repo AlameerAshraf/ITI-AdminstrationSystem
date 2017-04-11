@@ -30,15 +30,16 @@ namespace AdminstrationSysytem_v1.Models
         {
             return new ApplicationDbContext();
         }
-
-        public DbSet<Student> StudentS { get; set; }
+        public DbSet<Student> Students { get; set; }
         public DbSet<Qualifications> Qualifications { get; set; }
         public DbSet<Instructors> Instructors { get; set; }
         public DbSet<Departments> Departments { get; set; }
         public DbSet<Courses> Courses { get; set; }
         public DbSet<Instructor_Corse_InDepartment> InstCrsDep { get; set; }
-
-
-
+        public DbSet<Course_Student_Instructor> InstCrsStudent { get; set; }
+        public DbSet<Course_Student_Exam> CrsStudentExam { get; set; }
+        public DbSet<QuestionAnswers> QuestionAnswers { get; set; }
+        public DbSet<Attendance> Attendance { get; set; }
+        public DbSet<Vacation> Vacation { get; set; }
     }
 }

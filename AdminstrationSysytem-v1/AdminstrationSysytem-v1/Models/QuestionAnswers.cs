@@ -9,10 +9,11 @@ namespace AdminstrationSysytem_v1.Models
 {
     public class QuestionAnswers
     {
-        [Column(Order = 0), Key]
+        [Column("Question Answer", Order = 0), Key]
         public string QuestionAnswer { get; set; }
 
-        [Column(Order = 1), Key, ForeignKey("Questions")]
-        public string QuestionId { get; set; }
+        [Column("QuestionId", Order = 1), Key, ForeignKey("Questions")]
+        public int QuestionId { get; set; }
+        public Questions Questions { get; set; }
     }
 }

@@ -13,7 +13,10 @@ namespace AdminstrationSysytem_v1.Models
         public string Lname { get; set; }
         public string Address { get; set; }
         public DateTime BD { get; set; }
-        public int Age {
+        public int degree { get; set; }
+        public virtual List<Courses> Courses { get; set; }
+        public int Age
+        {
             get
             {
                 DateTime now = DateTime.Today;
@@ -23,7 +26,8 @@ namespace AdminstrationSysytem_v1.Models
                 return age;
             }
         }
-        public string Name {
+        public string Name
+        {
             get
             {
                 return Fname + " " + Lname;
@@ -35,5 +39,6 @@ namespace AdminstrationSysytem_v1.Models
         [ForeignKey("Departments")]
         public int DepartmentId { get; set; }
         public virtual Departments Departments { get; set; }
+        public virtual List<Attendance> Attendance { get; set; }
     }
 }
