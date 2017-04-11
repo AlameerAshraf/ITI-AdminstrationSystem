@@ -9,7 +9,7 @@ namespace AdminstrationSysytem_v1.Models
 {
     public class Instructor_Corse_InDepartment
     {
-       
+        public int InstructorEvaluation { get; set; }
         public int CourseStatues { get; set; }
 
         [Column("InstructorId", Order = 0), Key , ForeignKey("Instructor")]

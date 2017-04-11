@@ -37,11 +37,6 @@ namespace AdminstrationSysytem_v1.Models
         public DbSet<Departments> Departments { get; set; }
         public DbSet<Courses> Courses { get; set; }
         public DbSet<Instructor_Corse_InDepartment> InstCrsDep { get; set; }
-        public DbSet<Course_Student_Instructor> InstCrsStudent { get; set; }
-        public DbSet<Course_Student_Exam> CrsStudentExam { get; set; }
-        public DbSet<QuestionAnswers> QuestionAnswers { get; set; }
-        public DbSet<Attendance> Attendance { get; set; }
-        public DbSet<Vacation> Vacation { get; set; }
 
 
 

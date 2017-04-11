@@ -11,11 +11,19 @@ namespace AdminstrationSysytem_v1.Models
     public class Departments
     {
         [Key]
+       
         public int DepartmentId { get; set; }
+
+        [Required]
         public string Name { get; set; }
         public int Capacity { get; set; }
-        public virtual List<Student> Students { get; set; }
 
+
+
+
+
+
+        public virtual List<Student> Students { get; set; }
 
 
         [ForeignKey("Instructor")]

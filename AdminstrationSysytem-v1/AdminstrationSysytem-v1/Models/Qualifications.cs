@@ -12,11 +12,8 @@ namespace AdminstrationSysytem_v1.Models
         [Column(Order = 0) , Key]
         public string QualificationName { get; set; }
 
-
-
-        [Column(Order = 1), Key , ForeignKey("Instructors")]
-        public string InstructorId { get; set; }
-        public Instructors Instructors { get; set; }
+        //[Column(Order = 1), Key , ForeignKey("Instructors")]
+        //public string InstructorId { get; set; }
 
 
 
