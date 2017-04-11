@@ -13,6 +13,7 @@ namespace AdminstrationSysytem_v1.Models
         public string QuestionAnswer { get; set; }
 
         [Column(Order = 1), Key, ForeignKey("Questions")]
-        public string QuestionId { get; set; }
+        public int QuestionId { get; set; }
+        public Questions Questions { get; set; }
     }
 }
