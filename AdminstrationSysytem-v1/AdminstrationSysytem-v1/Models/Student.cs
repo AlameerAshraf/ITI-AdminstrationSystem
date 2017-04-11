@@ -13,7 +13,6 @@ namespace AdminstrationSysytem_v1.Models
         public string Lname { get; set; }
         public string Address { get; set; }
         public DateTime BD { get; set; }
-        public int degree { get; set; }
         public virtual List<Courses> Courses { get; set; }
         public int Age
         {
