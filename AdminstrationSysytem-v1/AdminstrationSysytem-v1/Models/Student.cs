@@ -12,31 +12,26 @@ namespace AdminstrationSysytem_v1.Models
         public string Fname { get; set; }
         public string Lname { get; set; }
         public string Address { get; set; }
-        public DateTime BD { get; set; }
+        public DateTime? BD { get; set; }
         public virtual List<Courses> Courses { get; set; }
         public int Age
         {
             get
             {
                 DateTime now = DateTime.Today;
-                int age = now.Year - BD.Year;
-                if (now < BD.AddYears(age))
+                int age = now.Year - BD.Value.Year;
+                if (now < BD.Value.AddYears(age))
                     age--;
                 return age;
             }
         }
-        public string Name
-        {
-            get
-            {
-                return Fname + " " + Lname;
-            }
-        }
+
+
 
 
 
         [ForeignKey("Departments")]
-        public int DepartmentId { get; set; }
+        public int? DepartmentId { get; set; }
         public virtual Departments Departments { get; set; }
         public virtual List<Attendance> Attendance { get; set; }
     }
