@@ -15,6 +15,7 @@ namespace AdminstrationSysytem_v1.Models
         public int LabDuration { get; set; }
         public int TotalGrade { get; set; }
 
+        public List<Exam> Exams { get; set; }
         public virtual List<Instructors> Instructors { get; set; }
         public virtual List<Departments> Departments { get; set; }
         public virtual List<Student> Students { get; set; }

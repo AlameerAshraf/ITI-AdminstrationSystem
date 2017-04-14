@@ -30,16 +30,18 @@ namespace AdminstrationSysytem_v1.Models
         {
             return new ApplicationDbContext();
         }
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Qualifications> Qualifications { get; set; }
-        public DbSet<Instructors> Instructors { get; set; }
-        public DbSet<Departments> Departments { get; set; }
-        public DbSet<Courses> Courses { get; set; }
-        public DbSet<Instructor_Corse_InDepartment> InstCrsDep { get; set; }
-        public DbSet<Course_Student_Instructor> InstCrsStudent { get; set; }
-        public DbSet<Course_Student_Exam> CrsStudentExam { get; set; }
-        public DbSet<QuestionAnswers> QuestionAnswers { get; set; }
-        public DbSet<Attendance> Attendance { get; set; }
-        public DbSet<Vacation> Vacation { get; set; }
+        public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<Qualifications> Qualifications { get; set; }
+        public virtual DbSet<Instructors> Instructors { get; set; }
+        public virtual DbSet<Departments> Departments { get; set; }
+        public virtual DbSet<Courses> Courses { get; set; }
+        public virtual DbSet<Instructor_Corse_InDepartment> InstCrsDep { get; set; }
+        public virtual DbSet<Course_Student_Instructor> InstCrsStudent { get; set; }
+        public virtual DbSet<Student_Exam> StdEx { get; set; }
+        public virtual DbSet<QuestionAnswers> QuestionAnswers { get; set; }
+        public virtual DbSet<Attendance> Attendance { get; set; }
+        public virtual DbSet<Vacation> Vacation { get; set; }
+
+       // public System.Data.Entity.DbSet<AdminstrationSysytem_v1.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

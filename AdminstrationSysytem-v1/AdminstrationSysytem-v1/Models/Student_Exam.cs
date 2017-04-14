@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AdminstrationSysytem_v1.Models
 {
-    public class Course_Student_Exam
+    public class Student_Exam
     {
         public int ExamGrade { get; set; }
 
@@ -15,13 +15,9 @@ namespace AdminstrationSysytem_v1.Models
         public string StudentId { get; set; }
         public Student Students { get; set; }
 
-        [Column("CoursesId", Order = 1), Key, ForeignKey("Course")]
-        public int CoursId { get; set; }
-        public Courses Course { get; set; }
-
-
-        [Column("ExamId", Order = 2), Key, ForeignKey("Exam")]
+        [Column("ExamId", Order = 1), Key, ForeignKey("Exam")]
         public int ExamId { get; set; }
         public Exam Exam { get; set; }
+
     }
 }

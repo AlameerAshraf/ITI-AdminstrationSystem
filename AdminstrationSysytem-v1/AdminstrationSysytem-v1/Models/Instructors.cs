@@ -13,22 +13,18 @@ namespace AdminstrationSysytem_v1.Models
         public string Address { get; set; }
         public string GraduationYear { get; set; }
         public string Status { get; set; }
-
-        public DateTime BD { get; set; }
+        public DateTime? BD { get; set; }
         public int Age
         {
             get
             {
                 DateTime now = DateTime.Today;
-                int age = now.Year - BD.Year;
-                if (now < BD.AddYears(age))
+                int age = now.Year - BD.Value.Year;
+                if (now < BD.Value.AddYears(age))
                     age--;
                 return age;
             }
         }
-
-
-
 
         public Departments Department { get; set; }
 

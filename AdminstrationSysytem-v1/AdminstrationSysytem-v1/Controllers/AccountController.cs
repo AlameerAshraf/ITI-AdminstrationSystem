@@ -147,11 +147,11 @@ namespace AdminstrationSysytem_v1.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(StudentViewModel model)
+        public async Task<ActionResult> Register(JoinViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new Student { UserName = model.Fname + model.Lname , Fname = model.Fname , Lname = model.Lname , Email = model.Email };
+                var user = new Student { UserName = model.Name , Email = model.Email , Address = model.Address , BD = model.BirthDate };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
