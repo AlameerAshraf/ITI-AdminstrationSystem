@@ -75,7 +75,8 @@ namespace AdminstrationSysytem_v1.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            ApplicationUser signedUser = UserManager.FindByEmail(model.Email);
+            var result = await SignInManager.PasswordSignInAsync(signedUser.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -155,8 +156,9 @@ namespace AdminstrationSysytem_v1.Controllers
                 var UserAccessType = Request.Form["item"];
                 if (UserAccessType == "Student")
                 {
+                    ViewBag.profile = "Student";
                     user = new Student { Name= model.Name,  UserName = model.Name, Email = model.Email, Address = model.Address, BD = model.BirthDate };
-                    var result = await UserManager.CreateAsync(user);
+                    var result = await UserManager.CreateAsync(user,model.Password);
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -167,14 +169,15 @@ namespace AdminstrationSysytem_v1.Controllers
                         // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                        return RedirectToAction("Profil", "Students",);
+                        return RedirectToAction("Index", "Home");
                     }
                     AddErrors(result);
                 }
                 else if (UserAccessType == "Instructor")
                 {
+                    ViewBag.profile = "Instructor";
                     user = new Instructors { Name = model.Name,  UserName = model.Name, Email = model.Email, Address = model.Address, BD = model.BirthDate };
-                    var result = await UserManager.CreateAsync(user);
+                    var result = await UserManager.CreateAsync(user,model.Password);
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
