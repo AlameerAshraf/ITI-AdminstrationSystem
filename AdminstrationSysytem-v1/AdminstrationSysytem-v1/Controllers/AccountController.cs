@@ -73,10 +73,9 @@ namespace AdminstrationSysytem_v1.Controllers
                 return View(model);
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
             ApplicationUser signedUser = UserManager.FindByEmail(model.Email);
-            var result = await SignInManager.PasswordSignInAsync(signedUser.UserName, model.Password, model.RememberMe, shouldLockout: false);
+
+            var result = await SignInManager.PasswordSignInAsync(signedUser.UserName, model.Password, model.RememberMe, shouldLockout: true);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -157,7 +156,7 @@ namespace AdminstrationSysytem_v1.Controllers
                 if (UserAccessType == "Student")
                 {
                     ViewBag.profile = "Student";
-                    user = new Student { Name= model.Name,  UserName = model.Name, Email = model.Email, Address = model.Address, BD = model.BirthDate };
+                    user = new Student { Name= model.Name,  UserName = model.Name, Email = model.Email, Address = model.Address, BD = model.BirthDate , UserAccessType = "Student"};
                     var result = await UserManager.CreateAsync(user,model.Password);
                     if (result.Succeeded)
                     {
@@ -168,7 +167,7 @@ namespace AdminstrationSysytem_v1.Controllers
                         // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                        TempData["Student"] = user; 
                         return RedirectToAction("Index", "Home");
                     }
                     AddErrors(result);
@@ -176,7 +175,7 @@ namespace AdminstrationSysytem_v1.Controllers
                 else if (UserAccessType == "Instructor")
                 {
                     ViewBag.profile = "Instructor";
-                    user = new Instructors { Name = model.Name,  UserName = model.Name, Email = model.Email, Address = model.Address, BD = model.BirthDate };
+                    user = new Instructors { Name = model.Name,  UserName = model.Name, Email = model.Email, Address = model.Address, BD = model.BirthDate , UserAccessType = "Instructor"};
                     var result = await UserManager.CreateAsync(user,model.Password);
                     if (result.Succeeded)
                     {
@@ -187,7 +186,7 @@ namespace AdminstrationSysytem_v1.Controllers
                         // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                        TempData["Instructor"] = user;  
                         return RedirectToAction("Index", "Home");
                     }
                     AddErrors(result);

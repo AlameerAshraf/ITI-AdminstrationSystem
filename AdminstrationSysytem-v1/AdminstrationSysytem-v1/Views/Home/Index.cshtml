@@ -1,21 +1,30 @@
-﻿@{
+﻿@using AdminstrationSysytem_v1.Models
+
+@{
     ViewBag.Title = "Home Page";
+    var Studnet = TempData["Student"] as Student;
+    var Instructor = TempData["Instructor"] as Instructors;
 }
+<p> Student </p>
+<p> Student </p>
 
 
-@ViewBag.profile
-    @if (ViewBag.profile == "Student")
+@if (TempData.Count != 0)
+{
+
+    if (TempData.ContainsKey("Student"))
     {
         @section profile {
-             @Html.ActionLink("Profile", "Students", "UserProfile")
+            @Html.ActionLink("Student Profile", "Contact", "Home")
         }
     }
-    else if (ViewBag.profile == "Instructor")
+    else if (TempData.ContainsKey("Instructor"))
     {
         @section profile {
-           @Html.ActionLink("Profile", "Instructors", "UserProfile")
+            @Html.ActionLink("Instructor Profile", "Contact", "Home")
         }
     }
+}
 
 
 <div class="jumbotron">

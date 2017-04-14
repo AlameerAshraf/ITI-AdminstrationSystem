@@ -13,7 +13,7 @@ namespace AdminstrationSysytem_v1.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201704140750007_h1"; }
+            get { return "201704141257008_h1"; }
         }
         
         string IMigrationMetadata.Source
