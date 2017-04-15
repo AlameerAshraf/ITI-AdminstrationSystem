@@ -21,6 +21,7 @@ namespace AdminstrationSysytem_v1.Controllers
 
         public ActionResult UserProfile()
         {
+
             return View();
         }
     }

@@ -46,6 +46,28 @@
             </div>
         </div>
     </div>
+    @if (TempData.Count != 0)
+    {
+        if (TempData.ContainsKey("Student"))
+        {
+            if (!Student.IsActivated)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    Hay , @Student.Name Your account is not activated by Admin till now , your action is prvented for now !
+                </div>
+            }
+            if (!Instructor.IsActivated)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    Hay , @Instructor.Name Your account is not activated by Admin! , your action is prvented for now !
+                </div>
+            }
+        }
+    }
     <div class="container body-content">
         @RenderBody()
         <hr />

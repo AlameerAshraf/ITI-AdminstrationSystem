@@ -11,6 +11,7 @@ namespace AdminstrationSysytem_v1.Models
     {
 
         public string UserAccessType { get; set; }
+        public bool IsActivated { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
