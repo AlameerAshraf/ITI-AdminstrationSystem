@@ -15,19 +15,6 @@ namespace AdminstrationSysytem_v1.Controllers
         RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(dbContext));
         UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(dbContext));
 
-        private ApplicationSignInManager _signInManager;
-
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return SignInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set
-            {
-                _signInManager = value;
-            }
-        }
 
         [HttpGet]
         public ActionResult CreateRoles()
@@ -66,16 +53,23 @@ namespace AdminstrationSysytem_v1.Controllers
                 var result = await userManager.CreateAsync(Admin , model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(Admin, isPersistent: false, rememberBrowser: false);
-
                     var RoleAssigner = userManager.AddToRole(Admin.Id, "Admin");
-
                     TempData["Admin"] = Admin;
                     return RedirectToAction("Index", "Home");
-
                 }
+                AddErrors(result);
+
             }
             return View();
+        }
+
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
         }
     }
 }
