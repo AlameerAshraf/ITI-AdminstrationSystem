@@ -15,8 +15,11 @@ namespace AdminstrationSysytem_v1.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext dbContext = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -75,17 +78,20 @@ namespace AdminstrationSysytem_v1.Controllers
 
             ApplicationUser signedUser = UserManager.FindByEmail(model.Email);
             var result = await SignInManager.PasswordSignInAsync(signedUser.UserName, model.Password, model.RememberMe, shouldLockout: true);
-     
+
             switch (result)
             {
                 case SignInStatus.Success:
                     if (signedUser.UserAccessType == "Student")
                     {
-                        TempData["Student"] = signedUser;
+                        var ObjStudent = dbContext.Students.Find(signedUser.Id);                 
+                        TempData["Student"] = ObjStudent;
+                        
                     }
-                    else
+                    else if (signedUser.UserAccessType == "Instructor")
                     {
-                        TempData["Instructor"] = signedUser;
+                        var ObjInstructor = dbContext.Instructors.Find(signedUser.Id);
+                        TempData["Instructor"] = ObjInstructor;
                     }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
@@ -423,6 +429,7 @@ namespace AdminstrationSysytem_v1.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            TempData.Clear();
             return RedirectToAction("Index", "Home");
         }
 

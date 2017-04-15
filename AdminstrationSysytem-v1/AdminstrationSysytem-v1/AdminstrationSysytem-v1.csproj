@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstructorsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -203,12 +204,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704141257008_h1.cs" />
-    <Compile Include="Migrations\201704141257008_h1.Designer.cs">
-      <DependentUpon>201704141257008_h1.cs</DependentUpon>
+    <Compile Include="Migrations\201704151000144_h1.cs" />
+    <Compile Include="Migrations\201704151000144_h1.Designer.cs">
+      <DependentUpon>201704151000144_h1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
+    <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\Student_Exam.cs" />
     <Compile Include="Models\Course_Student_Instructor.cs" />
     <Compile Include="Models\Instructors.cs" />
@@ -288,6 +290,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Instructors\UserProfile.cshtml" />
     <Content Include="Views\Students\UserProfile.cshtml" />
+    <Content Include="Views\Admins\CreateRoles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -301,8 +304,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704141257008_h1.resx">
-      <DependentUpon>201704141257008_h1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704151000144_h1.resx">
+      <DependentUpon>201704151000144_h1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

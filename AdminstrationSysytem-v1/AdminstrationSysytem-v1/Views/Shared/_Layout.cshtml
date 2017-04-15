@@ -1,6 +1,6 @@
 ﻿@using AdminstrationSysytem_v1.Models
 @{ 
-    var Studnet = TempData["Student"] as Student;
+    var Student = TempData["Student"] as Student;
     var Instructor = TempData["Instructor"] as Instructors;
     TempData.Keep();
 }
@@ -34,11 +34,11 @@
                     {
                         if (TempData.ContainsKey("Student"))
                         {
-                            <li>@Html.ActionLink("Student Profile", "UserProfile", "Students")</li>
+                            <li>@Html.ActionLink("Student Profile", "UserProfile", "Students", Student)</li>
                         }
                         else if (TempData.ContainsKey("Instructor"))
                         {
-                            <li>@Html.ActionLink("Instructor Profile", "UserProfile", "Instructors")</li>
+                            <li>@Html.ActionLink("Instructor Profile", "UserProfile", "Instructors", Instructor)</li>
                         }
                     }
                 </ul>
