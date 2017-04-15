@@ -93,6 +93,11 @@ namespace AdminstrationSysytem_v1.Controllers
                         var ObjInstructor = dbContext.Instructors.Find(signedUser.Id);
                         TempData["Instructor"] = ObjInstructor;
                     }
+                    else if (signedUser.UserAccessType == "Admin")
+                    {
+                        var ObjAdmin = dbContext.Users.Find(signedUser.Id);
+                        TempData["Admin"] = ObjAdmin;
+                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -179,6 +184,8 @@ namespace AdminstrationSysytem_v1.Controllers
                         string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         await UserManager.SendEmailAsync(user.Id, "Student , Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                        var RoleAssigner = UserManager.AddToRole(user.Id, "Student");
+
                         TempData["Student"] = user; 
                         return RedirectToAction("Index", "Home");
                     }
@@ -196,6 +203,8 @@ namespace AdminstrationSysytem_v1.Controllers
                         string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         await UserManager.SendEmailAsync(user.Id, "Instructor , Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                        var RoleAssigner = UserManager.AddToRole(user.Id, "Instructor");
                         TempData["Instructor"] = user;  
                         return RedirectToAction("Index", "Home");
                     }

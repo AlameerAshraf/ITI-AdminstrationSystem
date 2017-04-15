@@ -2,6 +2,7 @@
 @{ 
     var Student = TempData["Student"] as Student;
     var Instructor = TempData["Instructor"] as Instructors;
+    var Admin = TempData["Admin"] as ApplicationUser;
     TempData.Keep();
 }
 <!DOCTYPE html>
@@ -40,6 +41,10 @@
                         {
                             <li>@Html.ActionLink("Instructor Profile", "UserProfile", "Instructors", Instructor)</li>
                         }
+                        else if (TempData.ContainsKey("Admin"))
+                        {
+                            <li>@Html.ActionLink("Admin Profile", "UserProfile", "Instructors", Admin)</li>
+                        }
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -58,6 +63,9 @@
                     Hay , @Student.Name Your account is not activated by Admin till now , your action is prvented for now !
                 </div>
             }
+        }
+        if (TempData.ContainsKey("Instructor"))
+        {
             if (!Instructor.IsActivated)
             {
                 <div class="alert alert-danger" role="alert">
@@ -68,6 +76,7 @@
             }
         }
     }
+    
     <div class="container body-content">
         @RenderBody()
         <hr />

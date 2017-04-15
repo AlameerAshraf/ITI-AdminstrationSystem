@@ -8,7 +8,7 @@ namespace AdminstrationSysytem_v1.Models
 {
     public class JoinViewModel : RegisterViewModel
     {
-        public string Name { get; set; }
+     //   public string Name { get; set; }
         public string Address { get; set; }
         public DateTime? BirthDate { get; set; }
         public AccessType UserType { get; set; }

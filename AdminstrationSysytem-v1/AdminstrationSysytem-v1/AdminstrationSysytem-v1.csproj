@@ -291,6 +291,7 @@
     <Content Include="Views\Instructors\UserProfile.cshtml" />
     <Content Include="Views\Students\UserProfile.cshtml" />
     <Content Include="Views\Admins\CreateRoles.cshtml" />
+    <Content Include="Views\Admins\CreateAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
