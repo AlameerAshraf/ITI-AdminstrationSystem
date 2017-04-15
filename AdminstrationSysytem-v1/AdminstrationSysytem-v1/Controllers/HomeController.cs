@@ -10,7 +10,6 @@ namespace AdminstrationSysytem_v1.Controllers
     public class HomeController : Controller
     {
 
-        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Index()
         {
            

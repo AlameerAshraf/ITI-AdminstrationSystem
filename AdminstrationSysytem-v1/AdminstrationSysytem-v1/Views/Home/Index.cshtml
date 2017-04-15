@@ -1,15 +1,15 @@
-﻿@using AdminstrationSysytem_v1.Models
+﻿@*@using AdminstrationSysytem_v1.Models*@
 
 @{
     ViewBag.Title = "Home Page";
-    var Studnet = TempData["Student"] as Student;
-    var Instructor = TempData["Instructor"] as Instructors;
+    //var Studnet = TempData["Student"] as Student;
+    //var Instructor = TempData["Instructor"] as Instructors;
 }
 <p> Student </p>
 <p> Student </p>
 
 
-@if (TempData.Count != 0)
+@*@if (TempData.Count != 0)
 {
 
     if (TempData.ContainsKey("Student"))
@@ -24,7 +24,7 @@
             @Html.ActionLink("Instructor Profile", "Contact", "Home")
         }
     }
-}
+}*@
 
 
 <div class="jumbotron">

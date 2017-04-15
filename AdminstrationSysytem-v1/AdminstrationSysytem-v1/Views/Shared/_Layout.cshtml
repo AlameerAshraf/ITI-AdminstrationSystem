@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using AdminstrationSysytem_v1.Models
+@{ 
+    var Studnet = TempData["Student"] as Student;
+    var Instructor = TempData["Instructor"] as Instructors;
+    TempData.Keep();
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -24,7 +30,17 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@RenderSection("profile",required : false)</li>
+                    @if (TempData.Count != 0)
+                    {
+                        if (TempData.ContainsKey("Student"))
+                        {
+                            <li>@Html.ActionLink("Student Profile", "UserProfile", "Students")</li>
+                        }
+                        else if (TempData.ContainsKey("Instructor"))
+                        {
+                            <li>@Html.ActionLink("Instructor Profile", "UserProfile", "Instructors")</li>
+                        }
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

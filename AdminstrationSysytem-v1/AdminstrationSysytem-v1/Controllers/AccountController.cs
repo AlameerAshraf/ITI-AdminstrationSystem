@@ -74,8 +74,15 @@ namespace AdminstrationSysytem_v1.Controllers
             }
 
             ApplicationUser signedUser = UserManager.FindByEmail(model.Email);
-
             var result = await SignInManager.PasswordSignInAsync(signedUser.UserName, model.Password, model.RememberMe, shouldLockout: true);
+            if (signedUser.UserAccessType == "Student")
+            {
+                TempData["Student"] = signedUser;       
+            }
+            else
+            {
+                TempData["Instructor"] = signedUser;
+            }
             switch (result)
             {
                 case SignInStatus.Success:
@@ -155,7 +162,6 @@ namespace AdminstrationSysytem_v1.Controllers
                 var UserAccessType = Request.Form["item"];
                 if (UserAccessType == "Student")
                 {
-                    ViewBag.profile = "Student";
                     user = new Student { Name= model.Name,  UserName = model.Name, Email = model.Email, Address = model.Address, BD = model.BirthDate , UserAccessType = "Student"};
                     var result = await UserManager.CreateAsync(user,model.Password);
                     if (result.Succeeded)
@@ -174,7 +180,6 @@ namespace AdminstrationSysytem_v1.Controllers
                 }
                 else if (UserAccessType == "Instructor")
                 {
-                    ViewBag.profile = "Instructor";
                     user = new Instructors { Name = model.Name,  UserName = model.Name, Email = model.Email, Address = model.Address, BD = model.BirthDate , UserAccessType = "Instructor"};
                     var result = await UserManager.CreateAsync(user,model.Password);
                     if (result.Succeeded)

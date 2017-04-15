@@ -19,9 +19,8 @@ namespace AdminstrationSysytem_v1.Controllers
             return View(users);
         }
 
-        public ActionResult UserProfile(Student obj)
+        public ActionResult UserProfile()
         {
-            ViewBag.name = obj.Name;
             return View();
         }
     }
