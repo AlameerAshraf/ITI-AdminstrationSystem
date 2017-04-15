@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using AdminstrationSysytem_v1.Models;
+using System.Net.Mail;
+using System.Net;
 
 namespace AdminstrationSysytem_v1
 {
@@ -18,6 +20,21 @@ namespace AdminstrationSysytem_v1
     {
         public Task SendAsync(IdentityMessage message)
         {
+            SmtpClient client = new SmtpClient()
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential("AlameersDevelopers@gmail.com", "mvcsmtp2017")
+            };
+            MailMessage m = new MailMessage("AlameersDevelopers@gmail.com", message.Destination)
+            {
+                Body = message.Body,
+                Subject = message.Subject
+            };
+            client.Send(m);
 
             return Task.FromResult(0);
         }
