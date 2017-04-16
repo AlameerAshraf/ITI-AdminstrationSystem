@@ -8,7 +8,7 @@ using System.Web;
 
 namespace AdminstrationSysytem_v1.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Admin")]
     public class AdminsController : Controller
     {
         static ApplicationDbContext dbContext = new ApplicationDbContext();
@@ -34,7 +34,7 @@ namespace AdminstrationSysytem_v1.Controllers
                     roleManager.Create(role);
                 }
             }
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -43,7 +43,7 @@ namespace AdminstrationSysytem_v1.Controllers
         {
             return View();
         }
-
+        
         [HttpPost]
         public async Task<ActionResult> CreateAdmin(RegisterViewModel model)
         {
@@ -54,6 +54,7 @@ namespace AdminstrationSysytem_v1.Controllers
                 if (result.Succeeded)
                 {
                     var RoleAssigner = userManager.AddToRole(Admin.Id, "Admin");
+                    
                     TempData["Admin"] = Admin;
                     return RedirectToAction("Index", "Home");
                 }
