@@ -39,8 +39,16 @@
         @foreach (var item in Model)
         {
             <tr>
+               
                 <td>
-                    <input type="checkbox" name="IsActivated" value="@item.Name" />
+                    @if (item.IsActivated)
+                    {
+                        <input type="checkbox" name="@item.Name" value="@item.Name" checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="@item.Name" value="@item.Name"/>
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)

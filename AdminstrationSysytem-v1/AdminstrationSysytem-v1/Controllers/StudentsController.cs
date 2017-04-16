@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AdminstrationSysytem_v1.Models;
+using System.Data.Entity;
 
 namespace AdminstrationSysytem_v1.Controllers
 {
@@ -20,13 +21,22 @@ namespace AdminstrationSysytem_v1.Controllers
             return View(Students);
         }
 
-
-        public ActionResult ActivateAccounts(string[] IsActivated)
+        [HttpPost]
+        public ActionResult ActivateAccounts()
         {
-            ViewBag.del = IsActivated;
+            var Students = db.Students.ToList();
+            foreach (var item in Students)
+            {
+                if (item.Name == Request.Form[item.Name])
+                {
+                    item.IsActivated = true;
+                    db.Entry(item).State = EntityState.Modified;
+                }
+            }
 
+            db.SaveChanges();
 
-            return View();
+            return RedirectToAction("StudentsList"); 
         }
 
         public ActionResult UserProfile()
