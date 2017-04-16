@@ -18,7 +18,8 @@ namespace AdminstrationSysytem_v1.Controllers
         public ActionResult StudentsList()
         {
             var Students = db.Students.ToList();
-            return View(Students);
+            return PartialView(Students);
+            //return View(Students);
         }
 
         [HttpPost]
@@ -45,12 +46,18 @@ namespace AdminstrationSysytem_v1.Controllers
 
             db.SaveChanges();
 
-            return RedirectToAction("StudentsList"); 
+            return PartialView("List",Students); 
         }
 
         public ActionResult UserProfile()
         {
 
+            return View();
+        }
+
+        public ActionResult Test()
+        {
+            ViewBag.tem = Request.Form;
             return View();
         }
     }

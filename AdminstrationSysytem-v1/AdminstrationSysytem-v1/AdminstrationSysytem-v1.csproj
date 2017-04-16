@@ -246,6 +246,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -293,6 +295,8 @@
     <Content Include="Views\Admins\CreateRoles.cshtml" />
     <Content Include="Views\Admins\CreateAdmin.cshtml" />
     <Content Include="Views\Students\StudentsList.cshtml" />
+    <Content Include="Views\Students\List.cshtml" />
+    <Content Include="Views\Students\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
