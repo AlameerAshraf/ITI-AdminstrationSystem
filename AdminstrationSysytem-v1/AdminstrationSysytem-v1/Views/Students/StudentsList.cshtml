@@ -41,11 +41,11 @@
             <tr>
                
                 <td>
-                    @if (item.IsActivated)
+                    @if (item.IsActivated == true)
                     {
                         <input type="checkbox" name="@item.Name" value="@item.Name" checked="checked" />
                     }
-                    else
+                    else if (item.IsActivated == false)
                     {
                         <input type="checkbox" name="@item.Name" value="@item.Name"/>
                     }

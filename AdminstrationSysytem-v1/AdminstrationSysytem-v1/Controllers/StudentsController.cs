@@ -25,11 +25,20 @@ namespace AdminstrationSysytem_v1.Controllers
         public ActionResult ActivateAccounts()
         {
             var Students = db.Students.ToList();
+
             foreach (var item in Students)
             {
                 if (item.Name == Request.Form[item.Name])
                 {
-                    item.IsActivated = true;
+                    if (item.IsActivated == false)
+                    {
+                        item.IsActivated = true;
+                        db.Entry(item).State = EntityState.Modified;
+                    }
+                }
+                else
+                {
+                    item.IsActivated = false;
                     db.Entry(item).State = EntityState.Modified;
                 }
             }
