@@ -8,24 +8,27 @@
 <h2>StudentsList</h2>
 
 @using (Ajax.BeginForm("ActivateAccounts", "Students",
-                    new AjaxOptions
-                   {
-         HttpMethod = "POST",
-       InsertionMode = InsertionMode.Replace,
-     UpdateTargetId = "StudentTable",
-    Confirm = "jk?",
+                                new AjaxOptions
+                                {
+                                    HttpMethod = "POST",
+                                    InsertionMode = InsertionMode.Replace,
+                                    UpdateTargetId = "StudentTable",
+                                    Confirm = "Do you really want to activate that accounts?",
 
 
 
- }
- ))
+                                }
+             ))
 {
     <div id="StudentTable">
         @Html.Partial("List")
     </div>
     <input type="submit" class="btn btn-info" />
 }
-   
+
+
+
+
 
 
 
