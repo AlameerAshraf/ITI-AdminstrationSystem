@@ -5,18 +5,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>StudentsList</h2>
-
-@using (Ajax.BeginForm("ActivateAccounts", "Students",
+<h2 style="text-align:center">Students List</h2>
+<div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Add New Fileds
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li>@Ajax.ActionLink("Add New Student","as",new AjaxOptions { })</li>
+        <li><a href="#">Upload Data From Excel File</a></li>
+    </ul>
+</div>
+<br />
+@using (Ajax.BeginForm ("ActivateAccounts", "Students",
                                 new AjaxOptions
                                 {
                                     HttpMethod = "POST",
                                     InsertionMode = InsertionMode.Replace,
                                     UpdateTargetId = "StudentTable",
-                                    Confirm = "Do you really want to activate that accounts?",
-
-
-
+                                    Confirm = "Do you really want ?",
                                 }
              ))
 {
@@ -30,6 +37,20 @@
 
 
 
+<div id="div" class="modal">
+
+</div>
+
+
+
+@section scripts {
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        function togglemodel() {
+            $("#div").modal('show');
+        }
+    </script>
+}
 
 
 

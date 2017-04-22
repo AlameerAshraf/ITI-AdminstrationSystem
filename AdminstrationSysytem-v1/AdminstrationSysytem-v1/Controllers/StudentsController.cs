@@ -8,13 +8,14 @@ using System.Data.Entity;
 
 namespace AdminstrationSysytem_v1.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class StudentsController : Controller
     {
 
         ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Students
+        [Authorize(Roles = "Admin")]
+
         public ActionResult StudentsList()
         {
             var Students = db.Students.ToList();
@@ -23,6 +24,7 @@ namespace AdminstrationSysytem_v1.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult ActivateAccounts()
         {
             var Students = db.Students.ToList();
@@ -48,17 +50,40 @@ namespace AdminstrationSysytem_v1.Controllers
 
             return PartialView("List",Students); 
         }
-
+        [Authorize(Roles = "Student")]
         public ActionResult UserProfile()
         {
 
             return View();
         }
+        [Authorize(Roles = "Admin")]
+        //public ActionResult Test()
+        //{
+        //    ViewBag.tem = Request.Form;
+        //    return View();
+        //}
 
-        public ActionResult Test()
+
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public ActionResult UpdateStudentData(string id)
         {
-            ViewBag.tem = Request.Form;
-            return View();
+            Student student = db.Students.Find(id);
+            //return Content(id);
+            return PartialView("UpdateStudentData",student);
         }
+
+
+        [Authorize(Roles ="Admin")]
+        [HttpGet]
+        public ActionResult CraeteStudentData()
+        {
+            return PartialView();
+        }
+
+
+
+
     }
 }
