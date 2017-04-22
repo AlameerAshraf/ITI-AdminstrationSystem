@@ -5,13 +5,18 @@ using System.Web;
 using System.Web.Mvc;
 using AdminstrationSysytem_v1.Models;
 using System.Data.Entity;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace AdminstrationSysytem_v1.Controllers
 {
     public class StudentsController : Controller
     {
 
-        ApplicationDbContext db = new ApplicationDbContext();
+        static ApplicationDbContext db = new ApplicationDbContext();
+        UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+
 
         // GET: Students
         [Authorize(Roles = "Admin")]
@@ -22,6 +27,7 @@ namespace AdminstrationSysytem_v1.Controllers
             return PartialView(Students);
             //return View(Students);
         }
+
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
@@ -56,12 +62,6 @@ namespace AdminstrationSysytem_v1.Controllers
 
             return View();
         }
-        [Authorize(Roles = "Admin")]
-        //public ActionResult Test()
-        //{
-        //    ViewBag.tem = Request.Form;
-        //    return View();
-        //}
 
 
 
@@ -81,6 +81,46 @@ namespace AdminstrationSysytem_v1.Controllers
         {
             return PartialView();
         }
+
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public async Task<ActionResult> CraeteStudentData(JoinViewModel model)
+        {
+            var Students = db.Students.ToList();
+            if (ModelState.IsValid)
+            {
+                var user = new Student { Name = model.Name, UserName = model.Name, Email = model.Email, Address = model.Address, BD = model.BirthDate, UserAccessType = "Student" , IsActivated = true };
+                var result = await userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+
+                    string code = await userManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    await userManager.SendEmailAsync(user.Id, "Student , Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    var RoleAssigner = userManager.AddToRole(user.Id, "Student");
+
+                    TempData["Student"] = user;
+                    return PartialView("List", Students);
+                }
+                AddErrors(result);
+
+            }
+            return PartialView("CraeteStudentData");
+        }
+
+
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+        }
+
+
+
 
 
 

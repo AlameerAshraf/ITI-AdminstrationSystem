@@ -12,7 +12,7 @@
         <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li>@Ajax.ActionLink("Add New Student","as",new AjaxOptions { })</li>
+        <li>@Ajax.ActionLink("Add New Student", "CraeteStudentData", "Students", new AjaxOptions { InsertionMode = InsertionMode.Replace , UpdateTargetId = "div", OnSuccess= "togglemodel()" })</li>
         <li><a href="#">Upload Data From Excel File</a></li>
     </ul>
 </div>
