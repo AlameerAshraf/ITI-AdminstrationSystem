@@ -51,9 +51,9 @@
                 @Html.DisplayFor(modelItem => item.Departments.Name)
             </td>
             <td>
-                @Ajax.ActionLink("Edit", "UpdateStudentData", "Students" , new { id = item.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace , UpdateTargetId = "div" , OnSuccess= "togglemodel()" })
-                @Html.ActionLink("Details", "Test", "Students", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", "Students", new { id = item.Id })
+                @Ajax.ActionLink("Edit", "UpdateStudentData", "Students", new { id = item.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "div", OnSuccess = "togglemodel()" }) |
+                @Ajax.ActionLink("Delete", "DeleteStudent", "Students" , new { id = item.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace , UpdateTargetId = "div" , OnSuccess= "togglemodel()" }) |
+                @Html.ActionLink("Details", "Test", "Students", new { id = item.Id }) 
             </td>
         </tr>
     }

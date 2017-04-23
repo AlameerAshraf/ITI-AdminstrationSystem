@@ -56,6 +56,7 @@ namespace AdminstrationSysytem_v1.Controllers
 
             return PartialView("List",Students); 
         }
+
         [Authorize(Roles = "Student")]
         public ActionResult UserProfile()
         {
@@ -109,6 +110,14 @@ namespace AdminstrationSysytem_v1.Controllers
             return PartialView("CraeteStudentData");
         }
 
+
+
+        [Authorize(Roles ="Admin")]
+        [HttpGet]
+        public ActionResult DeleteStudent()
+        {
+            return PartialView();
+        }
 
 
         private void AddErrors(IdentityResult result)

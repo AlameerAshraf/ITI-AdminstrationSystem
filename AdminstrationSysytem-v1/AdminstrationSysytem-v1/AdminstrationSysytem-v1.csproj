@@ -298,6 +298,7 @@
     <Content Include="Views\Students\List.cshtml" />
     <Content Include="Views\Students\UpdateStudentData.cshtml" />
     <Content Include="Views\Students\CraeteStudentData.cshtml" />
+    <Content Include="Views\Students\DeleteStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
