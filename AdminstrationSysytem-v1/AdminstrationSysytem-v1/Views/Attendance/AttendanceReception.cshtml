@@ -1,0 +1,38 @@
+﻿@model IEnumerable<AdminstrationSysytem_v1.Models.Student>
+
+@{
+    ViewBag.Title = "AttendanceReception";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center;">Attendance - Reception</h2>
+
+@using (Ajax.BeginForm("", "", new AjaxOptions
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "StudentAttendance"
+}))
+{
+    <div   id="StudentAttendance">
+        @Html.DropDownList("Deps", (IEnumerable<SelectListItem>)ViewBag.Deps, new { @class = "form-control" })
+    </div>
+    <br />
+}
+
+
+    <div id="LoadHere">
+
+    </div>
+
+
+
+@section scripts{
+    <script>
+        $("#Deps").change(function () {
+            var Value = $(this).val();
+            alert(Value);
+            $("#LoadHere").load("http://localhost:65338/Attendance/GetStudents/" + Value);
+        })
+    </script>
+    }

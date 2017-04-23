@@ -1,0 +1,41 @@
+﻿@model IEnumerable<AdminstrationSysytem_v1.Models.Student>
+
+
+<form method="POST" action="/Attendance/Attendance">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayName("Deprtment Name")
+            </th>
+            <th>
+                @Html.DisplayName("Attendance")
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Departments.Name)
+                </td>
+                <td>
+                    <input type="checkbox" name="Attend" value="@item.Id" />
+                </td>
+            </tr>
+        }
+
+    </table>
+    <input type="submit" class="btn btn-success" />
+</form>

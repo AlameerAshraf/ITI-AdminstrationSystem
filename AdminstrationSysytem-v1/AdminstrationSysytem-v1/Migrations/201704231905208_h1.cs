@@ -7,12 +7,12 @@ namespace AdminstrationSysytem_v1.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.AspNetUsers", "IsActivated", c => c.Boolean(nullable: false));
+            AlterColumn("dbo.Attendances", "ArrivalTime", c => c.String());
         }
         
         public override void Down()
         {
-            DropColumn("dbo.AspNetUsers", "IsActivated");
+            AlterColumn("dbo.Attendances", "ArrivalTime", c => c.DateTime(nullable: false));
         }
     }
 }

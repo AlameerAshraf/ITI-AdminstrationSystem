@@ -120,6 +120,12 @@ namespace AdminstrationSysytem_v1.Controllers
         }
 
 
+
+
+
+
+
+
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)

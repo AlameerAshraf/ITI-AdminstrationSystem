@@ -13,9 +13,13 @@ namespace AdminstrationSysytem_v1.Models
         public string StudentId { get; set; }
         public Student Student { get; set; }
         [Column(Order = 1), Key]
+        //[DataType(DataType.Date)]
         public DateTime Date { get; set; }
-        public DateTime ArrivalTime { get; set; }
-        public DateTime LeavingTime { get; set; }
+        //[DataType(DataType.Time)]
+        public string ArrivalTime { get; set; }
+        public DateTime? LeavingTime { get; set; }
+        public bool IsPermitted { get; set; }
 
+   
     }
 }
