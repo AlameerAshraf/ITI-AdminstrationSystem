@@ -51,14 +51,17 @@ namespace AdminstrationSysytem_v1.Controllers
 
             foreach (var std in Students)
             {
-                if (std.Name == Request.Form[std.Name])
+                if (std.Name != null)
                 {
-                    StudentData = new Attendance() { ArrivalTime = hourse, StudentId = std.Id, Date = date, IsPermitted = false };
-                    db.Attendance.Add(StudentData);
-                    db.SaveChanges();
+                    if (std.Name == Request.Form[std.Name])
+                    {
+                        StudentData = new Attendance() { ArrivalTime = hourse, StudentId = std.Id, Date = date, IsPermitted = false };
+                        db.Attendance.Add(StudentData);
+                    }
                 }
             }
 
+            db.SaveChanges();
             return View();
         }
     }
