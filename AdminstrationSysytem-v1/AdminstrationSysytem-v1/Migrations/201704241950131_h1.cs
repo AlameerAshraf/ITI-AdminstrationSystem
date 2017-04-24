@@ -7,12 +7,12 @@ namespace AdminstrationSysytem_v1.Migrations
     {
         public override void Up()
         {
-            AlterColumn("dbo.Attendances", "ArrivalTime", c => c.String());
+            AlterColumn("dbo.Attendances", "ArrivalTime", c => c.Time(nullable: false, precision: 7));
         }
         
         public override void Down()
         {
-            AlterColumn("dbo.Attendances", "ArrivalTime", c => c.DateTime(nullable: false));
+            AlterColumn("dbo.Attendances", "ArrivalTime", c => c.String());
         }
     }
 }

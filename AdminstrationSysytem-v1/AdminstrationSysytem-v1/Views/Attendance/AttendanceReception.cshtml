@@ -14,16 +14,20 @@
     UpdateTargetId = "StudentAttendance"
 }))
 {
-    <div   id="StudentAttendance">
+    <div id="StudentAttendance">
         @Html.DropDownList("Deps", (IEnumerable<SelectListItem>)ViewBag.Deps, new { @class = "form-control" })
     </div>
     <br />
 }
 
 
-    <div id="LoadHere">
+<form method="POST" action="/Attendance/Attendance">
+    <input type="hidden" id="DepId" name="DeptId" value="" />
+     <div id="LoadHere">
+        
+     </div>
+</form>
 
-    </div>
 
 
 
@@ -32,6 +36,7 @@
         $("#Deps").change(function () {
             var Value = $(this).val();
             alert(Value);
+            $("#DepId").val(Value);
             $("#LoadHere").load("http://localhost:65338/Attendance/GetStudents/" + Value);
         })
     </script>

@@ -39,29 +39,26 @@ namespace AdminstrationSysytem_v1.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public ActionResult Attendance(string[] Attend)
+        public ActionResult Attendance()
         {
-            var Students = db.Students.ToList();
+            var TargetId = int.Parse(Request.Form["DeptId"]);
+            var Students = db.Students.Where(M => M.DepartmentId == TargetId).ToList();
             var StudentData  = new Attendance();
             var date = DateTime.Now.Date;
-            var hourse = DateTime.Now.ToString("hh:mm:ss");
+            var hourse = DateTime.Now.TimeOfDay;
             var Adb = db.Attendance.ToList();
 
-            foreach(var std in Attend)
-            {
 
-            }
-
-            /*foreach (var std in Students)
+            foreach (var std in Students)
             {
                 if (std.Name == Request.Form[std.Name])
                 {
                     StudentData = new Attendance() { ArrivalTime = hourse, StudentId = std.Id, Date = date, IsPermitted = false };
-                    Adb.Add(StudentData);
+                    db.Attendance.Add(StudentData);
+                    db.SaveChanges();
                 }
-            }*/
+            }
 
-            db.SaveChanges();
             return View();
         }
     }

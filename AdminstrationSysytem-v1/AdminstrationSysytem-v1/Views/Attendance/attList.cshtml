@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<AdminstrationSysytem_v1.Models.Student>
 
 
-<form method="POST" action="/Attendance/Attendance">
+
+
     <table class="table">
         <tr>
             <th>
@@ -31,11 +32,11 @@
                     @Html.DisplayFor(modelItem => item.Departments.Name)
                 </td>
                 <td>
-                    <input type="checkbox" name="Attend" value="@item.Id" />
+                    <input type="checkbox" name="@item.Name" value="@item.Name" />
                 </td>
             </tr>
         }
 
     </table>
     <input type="submit" class="btn btn-success" />
-</form>
+
