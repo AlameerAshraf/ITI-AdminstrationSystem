@@ -59,6 +59,7 @@ namespace AdminstrationSysytem_v1.Controllers
                         db.Attendance.Add(StudentData);
                     }
                 }
+
             }
 
             db.SaveChanges();

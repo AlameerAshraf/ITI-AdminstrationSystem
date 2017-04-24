@@ -34,5 +34,7 @@ namespace AdminstrationSysytem_v1.Models
         public int? DepartmentId { get; set; }
         public virtual Departments Departments { get; set; }
         public virtual List<Attendance> Attendance { get; set; }
+
+        public int? GradeOfAbsence { get; set; }
     }
 }

@@ -26,8 +26,9 @@ namespace AdminstrationSysytem_v1.Models
             }
         }
 
+        [ForeignKey("Department")]
+        public int? DepartmentId { get; set; }
         public Departments Department { get; set; }
-
         public virtual List<Courses> Courses { get; set; }
 
     }
