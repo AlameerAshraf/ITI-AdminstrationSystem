@@ -16,7 +16,7 @@ namespace AdminstrationSysytem_v1.Models
         //[DataType(DataType.Date)]
         public DateTime Date { get; set; }
         //[DataType(DataType.Time)]
-        public string ArrivalTime { get; set; }
+        public TimeSpan ArrivalTime { get; set; }
         public DateTime? LeavingTime { get; set; }
         public bool IsPermitted { get; set; }
 
