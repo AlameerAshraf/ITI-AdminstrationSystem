@@ -205,9 +205,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704242340169_h1.cs" />
-    <Compile Include="Migrations\201704242340169_h1.Designer.cs">
-      <DependentUpon>201704242340169_h1.cs</DependentUpon>
+    <Compile Include="Migrations\201704252317131_h1.cs" />
+    <Compile Include="Migrations\201704252317131_h1.Designer.cs">
+      <DependentUpon>201704252317131_h1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
@@ -302,6 +302,10 @@
     <Content Include="Views\Students\DeleteStudent.cshtml" />
     <Content Include="Views\Attendance\AttendanceReception.cshtml" />
     <Content Include="Views\Attendance\attList.cshtml" />
+    <Content Include="Views\Instructors\GivePermissionList.cshtml" />
+    <Content Include="Views\Instructors\PermissionShet.cshtml" />
+    <Content Include="Views\Instructors\PermissionSheet.cshtml" />
+    <Content Include="Views\Instructors\GivePermission.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -315,8 +319,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704242340169_h1.resx">
-      <DependentUpon>201704242340169_h1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704252317131_h1.resx">
+      <DependentUpon>201704252317131_h1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
