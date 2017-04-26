@@ -36,18 +36,27 @@ namespace AdminstrationSysytem_v1.Controllers
 
             foreach (var item in ListOfStudents)
             {
-                foreach (var Attender in StudentsInDepOfIns)
+                if (StudentsInDepOfIns.Count() == 0)
                 {
-                    if (Attender.id == item.Id)
-                    {
-                        AttendanceElement = new AttendanceModel { id = item.Id, name = item.Name, NoOfPermissions = item.NoOfPermissions, GradeOfAbsence = item.GradeOfAbsence, IsPermitted = Attender.IsPermitted };
-                    }
-                    else
-                    {
-                        AttendanceElement = new AttendanceModel { id = item.Id, name = item.Name, NoOfPermissions = item.NoOfPermissions, GradeOfAbsence = item.GradeOfAbsence, IsPermitted = Attender.IsPermitted };
-                    }
+                    AttendanceElement = new AttendanceModel { id = item.Id, name = item.Name, NoOfPermissions = item.NoOfPermissions, GradeOfAbsence = item.GradeOfAbsence, IsPermitted = false };
+                    TargetList.Add(AttendanceElement);
                 }
-                TargetList.Add(AttendanceElement);
+                else
+                {
+                    foreach (var Attender in StudentsInDepOfIns)
+                    {
+                        if (Attender.id == item.Id)
+                        {
+                            AttendanceElement = new AttendanceModel { id = item.Id, name = item.Name, NoOfPermissions = item.NoOfPermissions, GradeOfAbsence = item.GradeOfAbsence, IsPermitted = Attender.IsPermitted };
+                        }
+                        else
+                        {
+                            AttendanceElement = new AttendanceModel { id = item.Id, name = item.Name, NoOfPermissions = item.NoOfPermissions, GradeOfAbsence = item.GradeOfAbsence, IsPermitted = Attender.IsPermitted };
+                        }
+                    }
+
+                    TargetList.Add(AttendanceElement);
+                }
             }
             return PartialView(TargetList);
         }
@@ -59,12 +68,16 @@ namespace AdminstrationSysytem_v1.Controllers
         {
             var Attendance = db.Attendance.ToList();
             var Students = db.Students.ToList();
-
+            var date = DateTime.Now.Date;
+            var PermittedStudent = new Attendance();
             foreach (string item in Request.Form.Keys)
             {
-                var x = Request.Form[item];
+                var IdOfPStudent = Request.Form[item];
+                PermittedStudent = new Attendance() { ArrivalTime = null, StudentId = IdOfPStudent, Date = date, IsPermitted = true };
+                db.Attendance.Add(PermittedStudent);
             }
 
+            db.SaveChanges();
             return View();
         }
     }

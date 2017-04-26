@@ -7,14 +7,12 @@ namespace AdminstrationSysytem_v1.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.Student", "NoOfPermissions", c => c.Int());
-            DropColumn("dbo.Attendances", "NoOfPermissions");
+            AlterColumn("dbo.Attendances", "ArrivalTime", c => c.Time(precision: 7));
         }
         
         public override void Down()
         {
-            AddColumn("dbo.Attendances", "NoOfPermissions", c => c.Int(nullable: false));
-            DropColumn("dbo.Student", "NoOfPermissions");
+            AlterColumn("dbo.Attendances", "ArrivalTime", c => c.Time(nullable: false, precision: 7));
         }
     }
 }
