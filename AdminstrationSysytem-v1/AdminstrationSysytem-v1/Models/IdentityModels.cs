@@ -44,7 +44,8 @@ namespace AdminstrationSysytem_v1.Models
         public DbSet<QuestionAnswers> QuestionAnswers { get; set; }
         public DbSet<Attendance> Attendance { get; set; }
         public DbSet<Vacation> Vacation { get; set; }
+        public DbSet<AttendanceRules> AttendanceRules { get; set; }
 
-       // public System.Data.Entity.DbSet<AdminstrationSysytem_v1.Models.ApplicationUser> ApplicationUsers { get; set; }
+        // public System.Data.Entity.DbSet<AdminstrationSysytem_v1.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
