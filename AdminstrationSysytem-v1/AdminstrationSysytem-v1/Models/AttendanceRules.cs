@@ -16,6 +16,6 @@ namespace AdminstrationSysytem_v1.Models
         public int PunshimentNumber { get; set; }
 
         //Number of absence time !
-        public int RuleCase { get; set; }
+        public string RuleCase { get; set; }
     }
 }

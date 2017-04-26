@@ -7,12 +7,12 @@ namespace AdminstrationSysytem_v1.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.Student", "NoOfAbsenceDay", c => c.Int());
+            AlterColumn("dbo.AttendanceRules", "RuleCase", c => c.String());
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Student", "NoOfAbsenceDay");
+            AlterColumn("dbo.AttendanceRules", "RuleCase", c => c.Int(nullable: false));
         }
     }
 }
