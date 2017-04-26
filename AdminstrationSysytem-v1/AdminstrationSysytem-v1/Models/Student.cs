@@ -34,5 +34,6 @@ namespace AdminstrationSysytem_v1.Models
         public virtual List<Attendance> Attendance { get; set; }
         public int? GradeOfAbsence { get; set; }
         public int? NoOfPermissions { get; set; }
+        public int? NoOfAbsenceDay { get; set; }
     }
 }

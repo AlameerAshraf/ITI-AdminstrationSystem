@@ -68,6 +68,34 @@ namespace AdminstrationSysytem_v1.Controllers
 
 
 
+        public void AttendanceReporter (DateTime DateOfDay)
+        {
+            //The day to calc the attendance 
+            DateTime TodayAttendingSheet = DateOfDay.Date;
+            //Ids of doesn't come students 
+            var DoesntCome = db.Attendance.Where(m => m.IsAttended == false).Select(e => e.StudentId).ToList();
 
+
+            foreach (string item in DoesntCome)
+            {
+                bool IsTheyPermitted = db.Attendance.Where(m => m.StudentId == item).Select(e => e.IsPermitted).SingleOrDefault();
+                if (IsTheyPermitted == true)
+                {
+                    int? NumberOfPermissions = db.Students.Where(m => m.Id == item).Select(e => e.NoOfPermissions).SingleOrDefault();
+                    if (NumberOfPermissions == 0)
+                    {
+                        var TargetStudent = db.Students.Where(m => m.Id == item).SingleOrDefault();
+                        TargetStudent.NoOfPermissions = 1; 
+                        db.Entry(TargetStudent).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+
+        }
     }
 }

@@ -18,7 +18,8 @@ namespace AdminstrationSysytem_v1.Models
         public TimeSpan? ArrivalTime { get; set; }
         public DateTime? LeavingTime { get; set; }
         public bool IsPermitted { get; set; }
-        
+        public bool IsAttended { get; set; }
+
 
     }
 
