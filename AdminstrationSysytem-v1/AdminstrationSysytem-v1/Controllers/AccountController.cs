@@ -174,7 +174,7 @@ namespace AdminstrationSysytem_v1.Controllers
                 var UserAccessType = Request.Form["item"];
                 if (UserAccessType == "Student")
                 {
-                    user = new Student { Name= model.Name,  UserName = model.Name, Email = model.Email, Address = model.Address, BD = model.BirthDate , UserAccessType = "Student"};
+                    user = new Student { Name= model.Name,  UserName = model.Name, Email = model.Email, Address = model.Address, BD = model.BirthDate , GradeOfAbsence = 600 , NoOfAbsenceDay = 0 , NoOfPermissions = 0 , UserAccessType = "Student"};
                     var result = await UserManager.CreateAsync(user,model.Password);
                     if (result.Succeeded)
                     {

@@ -55,10 +55,16 @@ namespace AdminstrationSysytem_v1.Controllers
                 {
                     if (std.Name == Request.Form[std.Name])
                     {
-                        StudentData = new Attendance() { ArrivalTime = hourse, StudentId = std.Id, Date = date, IsPermitted = false };
+                        StudentData = new Attendance() { ArrivalTime = hourse, StudentId = std.Id, Date = date, IsPermitted = false , IsAttended = true};
+                        db.Attendance.Add(StudentData);
+                    }
+                    else
+                    {
+                        StudentData = new Attendance() { ArrivalTime = hourse, StudentId = std.Id, Date = date, IsPermitted = false , IsAttended = false};
                         db.Attendance.Add(StudentData);
                     }
                 }
+                
 
             }
 
@@ -66,6 +72,16 @@ namespace AdminstrationSysytem_v1.Controllers
             return View();
         }
 
+
+
+
+        [Authorize(Roles ="Admin")]
+        [HttpGet]
+        public ActionResult Report()
+        {
+            AttendanceReporter(DateTime.Now);
+            return View();
+        }
 
 
         public void AttendanceReporter (DateTime DateOfDay)
