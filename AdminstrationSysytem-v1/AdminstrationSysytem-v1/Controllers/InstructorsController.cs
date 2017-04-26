@@ -51,5 +51,21 @@ namespace AdminstrationSysytem_v1.Controllers
             }
             return PartialView(TargetList);
         }
+
+
+        [Authorize(Roles = "Instructor")]
+        [HttpPost]
+        public ActionResult AcceptPermissions()
+        {
+            var Attendance = db.Attendance.ToList();
+            var Students = db.Students.ToList();
+
+            foreach (string item in Request.Form.Keys)
+            {
+                var x = Request.Form[item];
+            }
+
+            return View();
+        }
     }
 }
