@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using AdminstrationSysytem_v1.Models;
+using System.Data.Entity.Infrastructure;
 
 namespace AdminstrationSysytem_v1.Controllers
 {
@@ -66,18 +67,29 @@ namespace AdminstrationSysytem_v1.Controllers
         [HttpPost]
         public ActionResult AcceptPermissions()
         {
-            var Attendance = db.Attendance.ToList();
+            //var Attendance = db.Attendance.ToList();
             var Students = db.Students.ToList();
             var date = DateTime.Now.Date;
             var PermittedStudent = new Attendance();
+
             foreach (string item in Request.Form.Keys)
             {
-                var IdOfPStudent = Request.Form[item];
-                PermittedStudent = new Attendance() { ArrivalTime = null, StudentId = IdOfPStudent, Date = date, IsPermitted = true };
-                db.Attendance.Add(PermittedStudent);
+                if(item != "X-Requested-With")
+                {
+                    string IdOfPStudent = Request.Form[item];
+                    PermittedStudent = new Attendance() { ArrivalTime = null, StudentId = IdOfPStudent, Date = date, IsPermitted = true };
+                    db.Attendance.Add(PermittedStudent);
+                }
             }
 
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException e)
+            {
+                var i = e.InnerException; 
+            }
             return View();
         }
     }
