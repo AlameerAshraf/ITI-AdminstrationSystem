@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using Quartz; 
@@ -7,6 +8,7 @@ using Quartz.Impl;
 
 namespace AdminstrationSysytem_v1.Models
 {
+    /*
     public class RepoertAttendanceTaskSchedular : IJob
     {
         ApplicationDbContext db = new ApplicationDbContext();
@@ -80,10 +82,25 @@ namespace AdminstrationSysytem_v1.Models
 
     public class JobScheduler
     {
+        static string  s = "10:30 AM";
+        static DateTime _t = DateTime.ParseExact(s, "h:mm tt", CultureInfo.InvariantCulture);
+
         public static void Start()
         {
             IScheduler sch = StdSchedulerFactory.GetDefaultScheduler();
             sch.Start();
+
+            IJobDetail job = JobBuilder.Create<RepoertAttendanceTaskSchedular>().Build();
+            ITrigger trigger = TriggerBuilder.Create()
+                .WithIdentity("trigger1")
+                .StartAt(_t)
+                .WithSimpleSchedule(x => x.RepeatForever().WithIntervalInHours(24))
+                .Build();
+
+            sch.ScheduleJob(job, trigger);
+
+
         }
     }
+    */
 }
