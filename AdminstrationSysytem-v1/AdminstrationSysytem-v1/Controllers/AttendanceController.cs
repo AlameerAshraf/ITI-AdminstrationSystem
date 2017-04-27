@@ -97,8 +97,8 @@ namespace AdminstrationSysytem_v1.Controllers
                 var TargetStudent = db.Students.Where(m => m.Id == item).SingleOrDefault();
                 bool IsTheyPermitted = db.Attendance.Where(m => m.StudentId == item).Select(e => e.IsPermitted).SingleOrDefault();
                 if (IsTheyPermitted == true)
-                {                   
-                    TargetStudent.NoOfPermissions += 1; 
+                {
+                    TargetStudent.NoOfPermissions += 1;
                     db.Entry(TargetStudent).State = System.Data.Entity.EntityState.Modified;
                 }
                 else
@@ -106,9 +106,16 @@ namespace AdminstrationSysytem_v1.Controllers
                     int? AbsenceDays = TargetStudent.NoOfAbsenceDay;
                     int? Degrees = TargetStudent.GradeOfAbsence;
                     //1 - no , 2-5 - 5 , 6-9 - 10 , 10 - # - 25 ;
-                    if (AbsenceDays == 0 || AbsenceDays == 1)
+                    if (AbsenceDays == 0 || AbsenceDays == 1 || AbsenceDays == null)
                     {
-                        TargetStudent.NoOfAbsenceDay = AbsenceDays + 1;
+                        if (AbsenceDays == null)
+                        {
+                            TargetStudent.NoOfAbsenceDay = 1;
+                        }
+                        else
+                        {
+                            TargetStudent.NoOfAbsenceDay = AbsenceDays + 1;
+                        }
                         db.Entry(TargetStudent).State = System.Data.Entity.EntityState.Modified;
                     }
                     else if (AbsenceDays >= 2 && AbsenceDays <= 3)
