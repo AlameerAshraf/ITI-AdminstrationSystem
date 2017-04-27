@@ -2,99 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
-using AdminstrationSysytem_v1.Models;
+using Quartz; 
+using Quartz.Impl;
 
-namespace AdminstrationSysytem_v1.Controllers
+namespace AdminstrationSysytem_v1.Models
 {
-    public class AttendanceController : Controller
+    public class RepoertAttendanceTaskSchedular : IJob
     {
         ApplicationDbContext db = new ApplicationDbContext();
-        public ActionResult Index()
-        {
-            return View();
-        }
 
-
-
-        [Authorize(Roles ="Admin")]
-        [HttpGet]
-        public ActionResult AttendanceReception()
-        {
-            var departments = db.Departments.ToList();
-            ViewBag.Deps = new SelectList(departments, "DepartmentId", "Name"); 
-            var students = db.Students.ToList();
-            return PartialView(students);
-        }
-
-
-        [Authorize(Roles ="Admin")]
-        [HttpGet]
-        public ActionResult GetStudents(int id)
-        {
-            var StudentInDepartments = db.Students.Where(dep => dep.DepartmentId == id).ToList();
-            return PartialView("attList",StudentInDepartments);
-        }
-
-
-        [Authorize(Roles = "Admin")]
-        [HttpPost]
-        public ActionResult Attendance()
-        {
-            var TargetId = int.Parse(Request.Form["DeptId"]);
-            var Students = db.Students.Where(M => M.DepartmentId == TargetId).ToList();
-            var StudentData  = new Attendance();
-            var date = DateTime.Now.Date;
-            var hourse = DateTime.Now.TimeOfDay;
-            var Adb = db.Attendance.ToList();
-
-
-            foreach (var std in Students)
-            {
-                if (std.Name != null)
-                {
-                    if (std.Name == Request.Form[std.Name])
-                    {
-                        StudentData = new Attendance() { ArrivalTime = hourse, StudentId = std.Id, Date = date, IsPermitted = false , IsAttended = true};
-                        db.Attendance.Add(StudentData);
-                    }
-                    else
-                    {
-                        StudentData = new Attendance() { ArrivalTime = hourse, StudentId = std.Id, Date = date, IsPermitted = false , IsAttended = false};
-                        db.Attendance.Add(StudentData);
-                    }
-                }
-                
-
-            }
-
-            db.SaveChanges();
-            return View();
-        }
-
-
-
-
-        [Authorize(Roles ="Admin")]
-        [HttpGet]
-        public ActionResult Report()
+        public void Execute(IJobExecutionContext context)
         {
             AttendanceReporter(DateTime.Now);
-            return View();
-        }
 
+        }
 
         public void AttendanceReporter (DateTime dateOfDay)
         {
             //The day to calc the attendance 
             DateTime todayAttendingSheet = dateOfDay.Date;
             //Ids of doesn't come students 
-            var doesntCome = db.Attendance.Where(m => m.IsAttended == false).Where(s=>s.Date == todayAttendingSheet).Select(e => e.StudentId).ToList();
+            var doesntCome = db.Attendance.Where(m => m.IsAttended == false).Where(s => s.Date == todayAttendingSheet).Select(e => e.StudentId).ToList();
 
 
             foreach (string item in doesntCome)
             {
                 var targetStudent = db.Students.SingleOrDefault(m => m.Id == item);
+                if (targetStudent == null) throw new ArgumentNullException(nameof(targetStudent));
                 bool isTheyPermitted = db.Attendance.Where(m => m.StudentId == item).Select(e => e.IsPermitted).SingleOrDefault();
                 if (isTheyPermitted)
                 {
@@ -140,6 +74,16 @@ namespace AdminstrationSysytem_v1.Controllers
                 }
             }
 
+        }
+    }
+
+
+    public class JobScheduler
+    {
+        public static void Start()
+        {
+            IScheduler sch = StdSchedulerFactory.GetDefaultScheduler();
+            sch.Start();
         }
     }
 }
