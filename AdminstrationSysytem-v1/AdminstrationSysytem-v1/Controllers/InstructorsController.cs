@@ -74,11 +74,23 @@ namespace AdminstrationSysytem_v1.Controllers
 
             foreach (string item in Request.Form.Keys)
             {
+                string IdOfPStudent = Request.Form[item];
+                var student = db.Attendance.Where(m => m.StudentId == IdOfPStudent).SingleOrDefault();
                 if(item != "X-Requested-With")
                 {
-                    string IdOfPStudent = Request.Form[item];
-                    PermittedStudent = new Attendance() { ArrivalTime = null, StudentId = IdOfPStudent, Date = date, IsPermitted = true };
-                    db.Attendance.Add(PermittedStudent);
+                    if (student == null)
+                    {
+                        PermittedStudent = new Attendance() { ArrivalTime = null, StudentId = IdOfPStudent, Date = date, IsPermitted = true };
+                        db.Attendance.Add(PermittedStudent);
+                    }
+                    else
+                    {
+                        if(student.IsAttended == false && student.IsPermitted == false)
+                        {
+                            student.IsPermitted = true;
+                            db.Entry(student).State = EntityState.Modified;
+                        }
+                    }
                 }
             }
 
