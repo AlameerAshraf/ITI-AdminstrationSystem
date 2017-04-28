@@ -128,6 +128,9 @@ namespace AdminstrationSysytem_v1.Controllers
         }
 
 
+
+
+
         public List<string> AttendanceReporter (DateTime dateOfDay)
         {
             //The day to calc the attendance 
