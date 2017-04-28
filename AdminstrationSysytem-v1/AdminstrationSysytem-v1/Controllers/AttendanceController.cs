@@ -95,7 +95,10 @@ namespace AdminstrationSysytem_v1.Controllers
             foreach (string item in doesntCome)
             {
                 var targetStudent = db.Students.SingleOrDefault(m => m.Id == item);
-                bool isTheyPermitted = db.Attendance.Where(m => m.StudentId == item).Select(e => e.IsPermitted).SingleOrDefault();
+                bool isTheyPermitted = db.Attendance.Where(m => m.StudentId == item)
+                         .Where(m=>m.Date == todayAttendingSheet)
+                         .Select(e => e.IsPermitted).SingleOrDefault();
+
                 if (isTheyPermitted)
                 {
                     targetStudent.NoOfPermissions += 1;
@@ -106,7 +109,7 @@ namespace AdminstrationSysytem_v1.Controllers
                     int? absenceDays = targetStudent.NoOfAbsenceDay;
                     int? degrees = targetStudent.GradeOfAbsence;
                     //1 - no , 2-5 - 5 , 6-9 - 10 , 10 - # - 25 ;
-                    if (absenceDays == 0 || absenceDays == 1 || absenceDays == null)
+                    if (absenceDays == 0 || absenceDays == null)
                     {
                         if (absenceDays == null)
                         {
@@ -118,9 +121,9 @@ namespace AdminstrationSysytem_v1.Controllers
                         }
                         db.Entry(targetStudent).State = System.Data.Entity.EntityState.Modified;
                     }
-                    else if (absenceDays >= 2 && absenceDays <= 3)
+                    else if (absenceDays <= 2 && absenceDays <= 5)
                     {
-                        int punshment = db.AttendanceRules.Where(m => m.RuleCase == "2-3").Select(e => e.PunshimentNumber).SingleOrDefault();
+                        int punshment = db.AttendanceRules.Where(m => m.RuleCase == "2-5").Select(e => e.PunshimentNumber).SingleOrDefault();
                         targetStudent.GradeOfAbsence = degrees - punshment;
                         db.Entry(targetStudent).State = System.Data.Entity.EntityState.Modified;
                     }

@@ -224,6 +224,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\AttendanceRules.cs" />
+    <Compile Include="Models\RepoertAttendanceTaskSchedular.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\Student_Exam.cs" />
     <Compile Include="Models\Course_Student_Instructor.cs" />
