@@ -71,7 +71,7 @@ namespace AdminstrationSysytem_v1.Controllers
             }
 
             db.SaveChanges();
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -125,6 +125,77 @@ namespace AdminstrationSysytem_v1.Controllers
             };
             client.Send(m);
             return RedirectToAction("Index","Home");
+        }
+
+
+        [Authorize(Roles ="Admin")]
+        [HttpGet]
+        public ActionResult ReportOfAttendance()
+        {
+            List<string> AbsenceStudents = new List<string>();
+            var stds = new List<Student>();
+            var d = DateTime.Now.Date;
+            AbsenceStudents = db.Attendance.Where(m => m.IsAttended == true).Where(s => s.Date == d).Select(e => e.StudentId).ToList();
+
+            foreach (var item in AbsenceStudents)
+            {
+                var std = db.Students.Where(m => m.Id == item).SingleOrDefault();
+                stds.Add(std);
+            }
+            return View(stds);
+        }
+
+
+
+        [Authorize(Roles ="Admin")]
+        [HttpGet]
+        public ActionResult Reportattendanceinperiod()
+        {
+            return View();
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public ActionResult Reportattendanceinperiod(string from , string to)
+        {
+            List<AttendanceModel> repos;
+
+            DateTime start = Convert.ToDateTime(from);
+            DateTime end = Convert.ToDateTime(to);
+            
+            repos = (from p in db.Attendance
+                       where p.Date >= start.Date && p.Date <= end.Date && p.IsAttended == true
+                       join s in db.Students on p.StudentId equals s.Id
+                       select new AttendanceModel() { name = s.Name, GradeOfAbsence = s.GradeOfAbsence, NoOfPermissions = s.NoOfPermissions, Email = s.Email , Date = p.Date }).ToList();
+        
+            
+            return PartialView("AttendanceStudentsList", repos);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public ActionResult Reportabsenceinperiod()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public ActionResult Reportabsenceinperiod(string from, string to)
+        {
+            List<AttendanceModel> repos;
+
+            DateTime start = Convert.ToDateTime(from);
+            DateTime end = Convert.ToDateTime(to);
+
+            repos = (from p in db.Attendance
+                     where p.Date >= start.Date && p.Date <= end.Date && p.IsAttended == false
+                     join s in db.Students on p.StudentId equals s.Id
+                     select new AttendanceModel() { name = s.Name, GradeOfAbsence = s.GradeOfAbsence, NoOfPermissions = s.NoOfPermissions, Email = s.Email , Date = p.Date }).ToList();
+
+
+            return PartialView("AbsenceStudentsList", repos);
         }
 
 

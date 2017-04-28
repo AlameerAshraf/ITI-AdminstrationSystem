@@ -46,13 +46,16 @@
                         else if (TempData.ContainsKey("Admin"))
                         {
                             <li>@Html.ActionLink("Admin Profile", "UserProfile", "Instructors", Admin)</li>
-                            <li>@Html.ActionLink("Students", "StudentsList", "Students")</li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Studnts Panel<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Report Of Absence"+" "+DateTime.Now.ToString("dd/MM/yyyy"), "Report", "Attendance")</li>
-                                    <li>@Html.ActionLink("-Test- Quartz Library Resposible For Calling This Action Daily", "Claculatebsence", "Attendance")</li>
-                                    @*RepoertAttendanceTaskSchedular Class in Models*@
+                                    <li>@Html.ActionLink("Attendance Reception For"+" "+DateTime.Now.ToString("dd/MM/yyyy"), "AttendanceReception", "Attendance")</li>
+                                    <li>@Html.ActionLink("Report of Absence" + " " + DateTime.Now.ToString("dd/MM/yyyy"), "Report", "Attendance")</li>
+                                    <li>@Html.ActionLink("Report of Attendance" + " " + DateTime.Now.ToString("dd/MM/yyyy"), "ReportOfAttendance", "Attendance")</li>
+                                    <li>@Html.ActionLink("Attendance Reprots in time", "Reportattendanceinperiod", "Attendance")</li>
+                                    <li>@Html.ActionLink("Absence Reprots in time", "Reportabsenceinperiod", "Attendance")</li>
+                                    <li>@Html.ActionLink(" Quartz library resposible for calling this action daily", "Claculatebsence", "Attendance")</li>
+                                     @*RepoertAttendanceTaskSchedular Class in Models*@
                                     <li>@Html.ActionLink("Students", "StudentsList", "Students")</li>
                                 </ul>
                             </li>
@@ -96,9 +99,8 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-
-        <script src="~/Scripts/jquery-1.10.2.js"></script>
-        <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-1.12.4.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>

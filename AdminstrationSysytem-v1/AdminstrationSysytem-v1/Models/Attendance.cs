@@ -27,11 +27,13 @@ namespace AdminstrationSysytem_v1.Models
     public class AttendanceModel
     {
         public string id { get; set; }
+        public string Email { get; set; }
         public string name { get; set; }
         public bool IsPermitted { get; set; }
         public int? NoOfPermissions { get; set; }
         public TimeSpan? ArrivalTime { get; set; }
         public int? GradeOfAbsence { get; set; }
+        public DateTime Date { get; set; }
 
     }
 }

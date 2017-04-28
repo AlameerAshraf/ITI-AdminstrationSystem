@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2><i class="fa fa-bar-chart" aria-hidden="true"></i> Report Of Absence Students in - @DateTime.Now.ToString("dd/MM/yyyy")</h2>
+<h2><i class="fa fa-bar-chart" aria-hidden="true"></i> Report of Absence Students in - @DateTime.Now.ToString("dd/MM/yyyy")</h2>
 <br />
 
 <table class="table">
@@ -66,7 +66,7 @@
             @Html.DisplayFor(modelItem => item.Departments.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit","SendEmailToAbsence", "Attendance", new { mail = item.Email },null) 
+            @Html.ActionLink("Mail Student","SendEmailToAbsence", "Attendance", new { mail = item.Email },null) 
         </td>
     </tr>
 }

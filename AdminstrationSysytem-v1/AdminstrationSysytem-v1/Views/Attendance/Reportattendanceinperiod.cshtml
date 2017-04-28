@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Attendance Reports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2> <i class="fa fa-bar-chart" aria-hidden="true"></i> Attendance Reports</h2>
+<br />
+
+
+@using (Ajax.BeginForm("Reportattendanceinperiod", "Attendance",
+      new AjaxOptions
+      {
+          HttpMethod = "POST",
+          InsertionMode = InsertionMode.Replace,
+          UpdateTargetId = "Here",
+          Confirm = "Do you really want ?",
+      }
+  ))
+{
+    <div id="StudentTable">
+        <div class="container">
+            <div class="row" style="text-align:center;">
+                <div class="input-group col-md-3 col-md-offset-2 ">
+                    <label>From :</label>
+                    <div class="input-group date" data-provide="datepicker">
+                        <input type="text" class="form-control" onkeydown="CheckForDates()" name="from">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group col-md-3 col-md-offset-2 ">
+                    <label>To :</label>
+                    <div class="input-group date" data-provide="datepicker">
+                        <input type="text" class="form-control" onkeydown="CheckForDates()" name="to">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <input type="submit" value="Create Report" class="btn btn-success" style="text-align:center;" />
+
+    </div>
+    <br />
+    <div id="Here">
+
+    </div>
+}
+
+
+
+
+
+@section scripts{
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+<script src="~/Scripts/bootstrap-datepicker.js"></script>
+<script type="text/javascript">
+        
+</script>
+    }
+
+
