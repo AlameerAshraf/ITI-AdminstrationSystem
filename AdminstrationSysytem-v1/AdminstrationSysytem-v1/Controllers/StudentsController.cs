@@ -121,6 +121,17 @@ namespace AdminstrationSysytem_v1.Controllers
 
 
 
+        [Authorize(Roles = "Student")]
+        [HttpGet]
+        public ActionResult Evalute()
+        {
+            var StudentDepartmentId = (TempData["Student"] as Student).DepartmentId; 
+
+            return View();
+        }
+
+
+
 
 
 
