@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AdminstrationSysytem_v1.Models;
+using System.Net;
+using System.Net.Mail;
 
 namespace AdminstrationSysytem_v1.Controllers
 {
@@ -79,12 +81,54 @@ namespace AdminstrationSysytem_v1.Controllers
         [HttpGet]
         public ActionResult Report()
         {
+            List<string> AbsenceStudents = new List<string>();
+            var stds = new List<Student>();
+            var d = DateTime.Now.Date;
+            AbsenceStudents = db.Attendance.Where(m => m.IsAttended == false).Where(s => s.Date == d).Select(e => e.StudentId).ToList();
+
+            foreach (var item in AbsenceStudents)
+            {
+                var std = db.Students.Where(m => m.Id == item).SingleOrDefault();
+                stds.Add(std);
+            }
+
+            return View(stds);
+        }
+
+        [Authorize(Roles ="Admin")]
+        [HttpGet]
+        public ActionResult Claculatebsence()
+        {
             AttendanceReporter(DateTime.Now);
-            return View();
+            return Content("Hey,Admin this action should be calles automatically by the system Quartz Library");
+        }
+
+        [Authorize(Roles ="Admin")]
+        [HttpGet]
+        public ActionResult SendEmailToAbsence(string mail)
+        {
+            var message = "We Hope You're good " + "" + "You have counted absente today , without permissions";
+            var Subject = "Absence Report - ITI" + DateTime.Now.ToString("dd/MM/yyyy");
+            SmtpClient client = new SmtpClient()
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential("AlameersDevelopers@gmail.com", "mvcsmtp2017")
+            };
+            MailMessage m = new MailMessage("AlameersDevelopers@gmail.com", mail)
+            {
+                Body = message,
+                Subject = Subject
+            };
+            client.Send(m);
+            return RedirectToAction("Index","Home");
         }
 
 
-        public void AttendanceReporter (DateTime dateOfDay)
+        public List<string> AttendanceReporter (DateTime dateOfDay)
         {
             //The day to calc the attendance 
             DateTime todayAttendingSheet = dateOfDay.Date;
@@ -123,9 +167,12 @@ namespace AdminstrationSysytem_v1.Controllers
                     }
                     else if (absenceDays <= 2 && absenceDays <= 5)
                     {
-                        int punshment = db.AttendanceRules.Where(m => m.RuleCase == "2-5").Select(e => e.PunshimentNumber).SingleOrDefault();
-                        targetStudent.GradeOfAbsence = degrees - punshment;
-                        db.Entry(targetStudent).State = System.Data.Entity.EntityState.Modified;
+                        if (absenceDays != 1)
+                        {
+                            int punshment = db.AttendanceRules.Where(m => m.RuleCase == "2-5").Select(e => e.PunshimentNumber).SingleOrDefault();
+                            targetStudent.GradeOfAbsence = degrees - punshment;
+                            db.Entry(targetStudent).State = System.Data.Entity.EntityState.Modified;
+                        }
                     }
                     else if (absenceDays >= 6 && absenceDays <= 9)
                     {
@@ -143,6 +190,8 @@ namespace AdminstrationSysytem_v1.Controllers
                 }
             }
 
+
+            return doesntCome;
         }
     }
 }

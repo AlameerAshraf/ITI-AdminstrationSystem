@@ -1,0 +1,77 @@
+﻿@model IEnumerable<AdminstrationSysytem_v1.Models.Student>
+
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2><i class="fa fa-bar-chart" aria-hidden="true"></i> Report Of Absence Students in - @DateTime.Now.ToString("dd/MM/yyyy")</h2>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayName("Grades")
+        </th>
+        <th>
+            @Html.DisplayName("Permissions")
+        </th>
+        <th>
+            @Html.DisplayName("Absence Dayes")
+        </th>
+        <th>
+            @Html.DisplayName("Dep")
+        </th>
+        <th>
+            @Html.DisplayName("Send Mail")
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GradeOfAbsence)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoOfPermissions)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoOfAbsenceDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Departments.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit","SendEmailToAbsence", "Attendance", new { mail = item.Email },null) 
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Back To Home", "Index", "Home")
+</p>

@@ -50,8 +50,9 @@
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Studnts Panel<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Students", "StudentsList", "Students")</li>
-                                    <li>@Html.ActionLink("Students", "StudentsList", "Students")</li>
+                                    <li>@Html.ActionLink("Report Of Absence"+" "+DateTime.Now.ToString("dd/MM/yyyy"), "Report", "Attendance")</li>
+                                    <li>@Html.ActionLink("-Test- Quartz Library Resposible For Calling This Action Daily", "Claculatebsence", "Attendance")</li>
+                                    @*RepoertAttendanceTaskSchedular Class in Models*@
                                     <li>@Html.ActionLink("Students", "StudentsList", "Students")</li>
                                 </ul>
                             </li>

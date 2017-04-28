@@ -323,6 +323,7 @@
     <Content Include="Views\Instructors\PermissionShet.cshtml" />
     <Content Include="Views\Instructors\PermissionSheet.cshtml" />
     <Content Include="Views\Instructors\GivePermission.cshtml" />
+    <Content Include="Views\Attendance\Report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
