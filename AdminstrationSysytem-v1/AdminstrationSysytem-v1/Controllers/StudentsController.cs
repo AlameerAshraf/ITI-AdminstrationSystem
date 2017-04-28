@@ -121,13 +121,18 @@ namespace AdminstrationSysytem_v1.Controllers
 
 
 
-        [Authorize(Roles = "Student")]
+        //[Authorize(Roles = "Student")]
         [HttpGet]
         public ActionResult Evalute()
         {
-            var StudentDepartmentId = (TempData["Student"] as Student).DepartmentId; 
-
-            return View();
+            var StudentDepartmentId = (TempData["Student"] as Student).DepartmentId;
+            var CoursesInDepartment = db.InstCrsDep
+                .Include(g=>g.Instructor)
+                .Include(f=>f.Department)
+                .Include(u=>u.Course)
+                .Where(m => m.DepartmentId == StudentDepartmentId).ToList();
+            //return Content(CoursesInDepartment[0].Instructor.Name + CoursesInDepartment[0].Department.Name);
+             return View(CoursesInDepartment);
         }
 
 
