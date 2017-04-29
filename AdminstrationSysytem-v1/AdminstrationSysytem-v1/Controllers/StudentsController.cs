@@ -126,13 +126,21 @@ namespace AdminstrationSysytem_v1.Controllers
         public ActionResult Evalute()
         {
             var StudentDepartmentId = (TempData["Student"] as Student).DepartmentId;
-            var CoursesInDepartment = db.InstCrsDep
-                .Include(g=>g.Instructor)
-                .Include(f=>f.Department)
-                .Include(u=>u.Course)
-                .Where(m => m.DepartmentId == StudentDepartmentId).ToList();
-            //return Content(CoursesInDepartment[0].Instructor.Name + CoursesInDepartment[0].Department.Name);
-             return View(CoursesInDepartment);
+            var StudentDepartment = (TempData["Student"] as Student).Id;
+
+            var chk = db.InstCrsStudent.Where(e => e.StudentId == StudentDepartment).Any();
+            if (!chk)
+            {
+                var CoursesInDepartment = db.InstCrsDep
+                    .Include(g => g.Instructor)
+                    .Include(f => f.Department)
+                    .Include(u => u.Course)
+                    .Where(m => m.DepartmentId == StudentDepartmentId).ToList();
+                //return Content(CoursesInDepartment[0].Instructor.Name + CoursesInDepartment[0].Department.Name);
+                return View(CoursesInDepartment);
+            }
+            else
+                return RedirectToAction("Index", "Home");
         }
 
 
@@ -143,7 +151,24 @@ namespace AdminstrationSysytem_v1.Controllers
         public void EvaluteInstructors(List<EvaluationObject> obj)
         {
             var StudentDepartmentId = (TempData["Student"] as Student).Id;
+            var Eval = new Course_Student_Instructor(); 
 
+            foreach (var item in obj)
+            {
+                Eval = new Course_Student_Instructor()
+                {
+                    CoursId = item.CourseID
+                    ,
+                    InstructorId = item.InstructorID,
+                    StudentId = StudentDepartmentId,
+                    InstructorEvaluation = item.EvaluationDegree
+                };
+
+                db.InstCrsStudent.Add(Eval);
+
+            }
+
+            db.SaveChanges();
 
 
         }

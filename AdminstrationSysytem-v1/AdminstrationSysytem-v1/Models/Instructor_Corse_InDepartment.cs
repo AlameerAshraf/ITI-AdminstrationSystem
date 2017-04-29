@@ -29,7 +29,7 @@ namespace AdminstrationSysytem_v1.Models
     public class EvaluationObject
     {
         public string InstructorID { get; set; }
-        public string CourseID { get; set; }
+        public int CourseID { get; set; }
         public int EvaluationDegree { get; set; }
     }
 
