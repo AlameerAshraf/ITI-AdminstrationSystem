@@ -129,7 +129,7 @@ namespace AdminstrationSysytem_v1.Controllers
             var StudentDepartment = (TempData["Student"] as Student).Id;
 
             var chk = db.InstCrsStudent.Where(e => e.StudentId == StudentDepartment).Any();
-            if (!chk)
+            if (!chk) 
             {
                 var CoursesInDepartment = db.InstCrsDep
                     .Include(g => g.Instructor)
