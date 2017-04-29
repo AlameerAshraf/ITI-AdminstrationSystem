@@ -25,4 +25,12 @@ namespace AdminstrationSysytem_v1.Models
         public int DepartmentId { get; set; }
         public Departments Department { get; set; }
     }
+
+    public class EvaluationObject
+    {
+        public string InstructorID { get; set; }
+        public string CourseID { get; set; }
+        public int EvaluationDegree { get; set; }
+    }
+
 }

@@ -138,6 +138,16 @@ namespace AdminstrationSysytem_v1.Controllers
 
 
 
+        //[Authorize(Roles = "Student")]
+        [HttpPost]
+        public void EvaluteInstructors(List<EvaluationObject> obj)
+        {
+            var StudentDepartmentId = (TempData["Student"] as Student).Id;
+
+
+
+        }
+
 
 
 
