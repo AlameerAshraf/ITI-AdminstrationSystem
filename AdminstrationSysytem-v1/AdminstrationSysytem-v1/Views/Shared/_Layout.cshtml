@@ -39,6 +39,7 @@
                         if (TempData.ContainsKey("Student"))
                         {
                             <li>@Html.ActionLink("Student Profile", "UserProfile", "Students", Student)</li>
+                            <li>@Html.ActionLink("Evalute Instructors", "Evalute", "Students", Student)</li>
                         }
                         else if (TempData.ContainsKey("Instructor"))
                         {
