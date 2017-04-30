@@ -223,8 +223,13 @@ namespace AdminstrationSysytem_v1.Controllers
 
             db.SaveChanges();
 
-            return View();
+            return RedirectToAction("SubmitToDepartment","Students");
         }
+
+
+
+
+
 
 
 
