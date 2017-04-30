@@ -121,7 +121,7 @@ namespace AdminstrationSysytem_v1.Controllers
 
 
 
-        //[Authorize(Roles = "Student")]
+        [Authorize(Roles = "Student")]
         [HttpGet]
         public ActionResult Evalute()
         {
@@ -146,7 +146,7 @@ namespace AdminstrationSysytem_v1.Controllers
 
 
 
-        //[Authorize(Roles = "Student")]
+        [Authorize(Roles = "Student")]
         [HttpPost]
         public void EvaluteInstructors(List<EvaluationObject> obj)
         {
@@ -167,11 +167,46 @@ namespace AdminstrationSysytem_v1.Controllers
                 db.InstCrsStudent.Add(Eval);
 
             }
-
             db.SaveChanges();
-
-
         }
+
+
+
+
+
+        [Authorize(Roles ="Admin")]
+        [HttpGet]
+        public ActionResult SubmitToDepartment()
+        {
+            var departments = db.Departments.ToList();
+            ViewBag.Deps = new SelectList(departments, "DepartmentId", "Name");
+            return View();
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public ActionResult GetStudents(int id)
+        {
+            var StudentInDepartments = db.Students
+                       .Where(e=>e.DepartmentId == id || e.DepartmentId == null )
+                       .ToList();
+
+            return PartialView("GetStudents", StudentInDepartments);
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public ActionResult ToggleStudentDepartmentState()
+        {
+
+            return View();
+        }
+
+
+
+
 
 
 

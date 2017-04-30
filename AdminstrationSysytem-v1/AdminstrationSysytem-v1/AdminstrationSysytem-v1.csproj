@@ -452,6 +452,8 @@
     <Content Include="Views\Attendance\AttendanceStudentsList.cshtml" />
     <Content Include="Views\Attendance\AbsenceStudentsList.cshtml" />
     <Content Include="Views\Students\Evalute.cshtml" />
+    <Content Include="Views\Students\SubmitToDepartment.cshtml" />
+    <Content Include="Views\Students\GetStudents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

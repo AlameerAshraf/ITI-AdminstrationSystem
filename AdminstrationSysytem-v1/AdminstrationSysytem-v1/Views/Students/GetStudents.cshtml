@@ -1,0 +1,33 @@
+﻿@model IEnumerable<AdminstrationSysytem_v1.Models.Student>
+
+<div class="card-block">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @if (item.DepartmentId != null)
+                    {
+                        <input type="checkbox" class="form-control" checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" class="form-control" />
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<input type="submit" class="btn btn-danger" value="Accept" />

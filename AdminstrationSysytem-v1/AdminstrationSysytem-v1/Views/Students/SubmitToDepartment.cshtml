@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Submit Students To Departments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center;"> <i class="fa fa-database" aria-hidden="true"></i> Departments - Regesteration</h2>
+
+@using (Ajax.BeginForm("", "", new AjaxOptions
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "StudentAttendance"
+}))
+{
+    <div id="StudentAttendance">
+        @Html.DropDownList("Deps", (IEnumerable<SelectListItem>)ViewBag.Deps, new { @class = "form-control" })
+    </div>
+    <br />
+}
+
+
+<form method="POST" action="/Attendance/Attendance">
+    <input type="hidden" id="DepId" name="DeptId" value="" />
+    <div id="LoadHere">
+
+    </div>
+</form>
+
+
+
+
+@section scripts{
+    <script>
+        $("#Deps").change(function () {
+            var Value = $(this).val();
+            alert(Value);
+            $("#DepId").val(Value);
+            $("#LoadHere").load("http://localhost:65338/Students/GetStudents/" + Value);
+        })
+    </script>
+}
