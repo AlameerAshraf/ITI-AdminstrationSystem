@@ -201,6 +201,28 @@ namespace AdminstrationSysytem_v1.Controllers
         public ActionResult ToggleStudentDepartmentState()
         {
 
+            var depid = int.Parse(Request.Form["DeptId"]);
+
+            var StudentInDepartments = db.Students
+                       .Where(e => e.DepartmentId == depid || e.DepartmentId == null)
+                       .ToList();
+
+            foreach(var item in StudentInDepartments)
+            {
+                if(item.Id == Request.Form[item.Id])
+                {
+                    item.DepartmentId = depid;
+                    db.Entry(item).State = EntityState.Modified;
+                }
+                else
+                {
+                    item.DepartmentId = null;
+                    db.Entry(item).State = EntityState.Modified;
+                }
+            }
+
+            db.SaveChanges();
+
             return View();
         }
 

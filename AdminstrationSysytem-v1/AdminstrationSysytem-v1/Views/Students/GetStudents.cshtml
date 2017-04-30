@@ -19,11 +19,11 @@
                 <td>
                     @if (item.DepartmentId != null)
                     {
-                        <input type="checkbox" class="form-control" checked="checked" />
+                        <input type="checkbox" class="form-control" checked="checked" name=@item.Id value=@item.Id />
                     }
                     else
                     {
-                        <input type="checkbox" class="form-control" />
+                        <input type="checkbox" class="form-control" name=@item.Id value=@item.Id />
                     }
                 </td>
             </tr>
