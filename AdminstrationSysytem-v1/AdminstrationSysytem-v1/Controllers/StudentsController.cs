@@ -8,6 +8,10 @@ using System.Data.Entity;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Excel;
+using System.IO;
+using System.Data;
+
 
 namespace AdminstrationSysytem_v1.Controllers
 {
@@ -121,7 +125,7 @@ namespace AdminstrationSysytem_v1.Controllers
 
 
 
-        [Authorize(Roles = "Student")]
+        //[Authorize(Roles = "Student")]
         [HttpGet]
         public ActionResult Evalute()
         {
@@ -228,8 +232,53 @@ namespace AdminstrationSysytem_v1.Controllers
 
 
 
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public ActionResult UploadDataExcel()
+        {
+            return PartialView();
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public  ActionResult UploadDataExcel(HttpPostedFileBase FileExcel)
+        {
+            List<JoinViewModel> DataToInsert = new List<JoinViewModel>();
+            if (ModelState.IsValid)
+            {
+                if(FileExcel != null && FileExcel.ContentLength > 0)
+                {
+                    Stream stream = FileExcel.InputStream;
+                    IExcelDataReader reader = null;
+                    if (FileExcel.FileName.EndsWith(".xls"))
+                    {
+                        reader = ExcelReaderFactory.CreateBinaryReader(stream);
+                    }
+                    else if (FileExcel.FileName.EndsWith(".xlsx"))
+                    {
+                        reader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+                    }
+                    else
+                    {
+                        return PartialView("UploadDataExcel");
+                    }
+                    reader.IsFirstRowAsColumnNames = true;
+                    DataSet CommingData = reader.AsDataSet();
+                    reader.Close();
+
+                    DataTable Res = CommingData.Tables[0];
+
+                    foreach (DataRow item in Res.Rows)
+                    {
+                         var s =   item;
+                    }
 
 
+
+                }
+            }
+            return PartialView("UploadDataExcel");
+        }
 
 
 

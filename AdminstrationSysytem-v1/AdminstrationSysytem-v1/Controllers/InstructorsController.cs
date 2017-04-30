@@ -75,7 +75,10 @@ namespace AdminstrationSysytem_v1.Controllers
             foreach (string item in Request.Form.Keys)
             {
                 string IdOfPStudent = Request.Form[item];
-                var student = db.Attendance.Where(m => m.StudentId == IdOfPStudent).SingleOrDefault();
+                DateTime date1 = DateTime.Now.Date;
+                var student = db.Attendance
+                    .Where(m => m.StudentId == IdOfPStudent && m.Date == date1)
+                    .SingleOrDefault();
                 if(item != "X-Requested-With")
                 {
                     if (student == null)

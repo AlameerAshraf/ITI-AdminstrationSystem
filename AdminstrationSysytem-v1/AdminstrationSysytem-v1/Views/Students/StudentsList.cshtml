@@ -5,15 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 style="text-align:center">Students List</h2>
+<h2 style="text-align:center"><i class="fa fa-folder" aria-hidden="true"></i> Students - List</h2>
 <div class="dropdown">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
         Create New Fileds
         <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li>@Ajax.ActionLink("Add New Student", "CraeteStudentData", "Students", new AjaxOptions { InsertionMode = InsertionMode.Replace , UpdateTargetId = "div", OnSuccess= "togglemodel()" })</li>
-        <li><a href="#">Upload Data From Excel File</a></li>
+        <li>@Ajax.ActionLink("Add New Student", "CraeteStudentData", "Students", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "div", OnSuccess = "togglemodel()" })</li>
+        <li>@Ajax.ActionLink("Upload Data From Excel Filet", "UploadDataExcel", "Students", new AjaxOptions { InsertionMode = InsertionMode.Replace , UpdateTargetId = "div", OnSuccess= "togglemodel()" })</li>
     </ul>
 </div>
 <br />

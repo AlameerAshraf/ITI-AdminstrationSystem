@@ -184,3 +184,6 @@ C:\Users\apple\Desktop\ITI-AdminstrationSystem\AdminstrationSysytem-v1\Adminstra
 C:\Users\apple\Desktop\ITI-AdminstrationSystem\AdminstrationSysytem-v1\AdminstrationSysytem-v1\obj\Debug\AdminstrationSysytem-v1.csproj.GenerateResource.Cache
 C:\Users\apple\Desktop\ITI-AdminstrationSystem\AdminstrationSysytem-v1\AdminstrationSysytem-v1\obj\Debug\AdminstrationSysytem-v1.dll
 C:\Users\apple\Desktop\ITI-AdminstrationSystem\AdminstrationSysytem-v1\AdminstrationSysytem-v1\obj\Debug\AdminstrationSysytem-v1.pdb
+C:\Users\apple\Desktop\ITI-AdminstrationSystem\AdminstrationSysytem-v1\AdminstrationSysytem-v1\bin\Excel.dll
+C:\Users\apple\Desktop\ITI-AdminstrationSystem\AdminstrationSysytem-v1\AdminstrationSysytem-v1\bin\ICSharpCode.SharpZipLib.dll
+C:\Users\apple\Desktop\ITI-AdminstrationSystem\AdminstrationSysytem-v1\AdminstrationSysytem-v1\bin\Excel.pdb
