@@ -273,7 +273,7 @@ namespace AdminstrationSysytem_v1.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public  ActionResult UploadDataExcel(HttpPostedFileBase FileExcel)
+        public async Task<ActionResult> UploadDataExcel(HttpPostedFileBase FileExcel)
         {
             List<JoinViewModel> DataToInsert = new List<JoinViewModel>();
             if (ModelState.IsValid)
@@ -302,7 +302,21 @@ namespace AdminstrationSysytem_v1.Controllers
 
                     foreach (DataRow item in Res.Rows)
                     {
-                         var s =   item;
+                        var user = new Student { Name = item[0].ToString(), UserName = item[1].ToString(), Email = item[2].ToString(), Address = item[3].ToString(), BD = Convert.ToDateTime(item[4]), UserAccessType = "Student", IsActivated = true, GradeOfAbsence = 600, NoOfPermissions = 0, NoOfAbsenceDay = 0 };
+                        var result = await userManager.CreateAsync(user, item[6].ToString());
+                        if (result.Succeeded)
+                        {
+
+                            string code = await userManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                            await userManager.SendEmailAsync(user.Id, "Student , Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                            var RoleAssigner = userManager.AddToRole(user.Id, "Student");
+
+                            TempData["Student"] = user;
+                            var Students = db.Students.ToList();
+                            return RedirectToAction("List", Students);
+                        }
+                        AddErrors(result);
                     }
 
 
