@@ -74,9 +74,29 @@ namespace AdminstrationSysytem_v1.Controllers
         [HttpGet]
         public ActionResult UpdateStudentData(string id)
         {
+            var departments = db.Departments.ToList();
+            ViewBag.Deps = new SelectList(departments, "DepartmentId", "Name");
             Student student = db.Students.Find(id);
             //return Content(id);
             return PartialView("UpdateStudentData",student);
+         
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public ActionResult UpdateStudentData(Student std , int department)
+        {
+            var s = std.Id;
+            Student student = db.Students.Find(s);
+
+            student.Name = std.Name;
+            student.Email = std.Email;
+            student.DepartmentId = department;
+            student.Address = std.Address;
+            student.BD = std.BD;
+            
+            var Students = db.Students.ToList();
+            return RedirectToAction("List", Students);
         }
 
 
@@ -117,7 +137,6 @@ namespace AdminstrationSysytem_v1.Controllers
         }
 
 
-
         [Authorize(Roles ="Admin")]
         [HttpGet]
         public ActionResult DeleteStudent(string id)
@@ -133,11 +152,13 @@ namespace AdminstrationSysytem_v1.Controllers
             Student student = db.Students.Find(id);
             db.Students.Remove(student);
             db.SaveChanges();
-            return RedirectToAction("StudentsList","Students");
+
+            var Students = db.Students.ToList();
+            return RedirectToAction("List", Students);
         }
 
 
-        //[Authorize(Roles = "Student")]
+        [Authorize(Roles = "Student")]
         [HttpGet]
         public ActionResult Evalute()
         {
@@ -188,8 +209,6 @@ namespace AdminstrationSysytem_v1.Controllers
 
 
 
-
-
         [Authorize(Roles ="Admin")]
         [HttpGet]
         public ActionResult SubmitToDepartment()
@@ -198,7 +217,6 @@ namespace AdminstrationSysytem_v1.Controllers
             ViewBag.Deps = new SelectList(departments, "DepartmentId", "Name");
             return View();
         }
-
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
@@ -251,6 +269,8 @@ namespace AdminstrationSysytem_v1.Controllers
             return PartialView();
         }
 
+
+
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public  ActionResult UploadDataExcel(HttpPostedFileBase FileExcel)
@@ -291,6 +311,8 @@ namespace AdminstrationSysytem_v1.Controllers
             }
             return PartialView("UploadDataExcel");
         }
+
+
 
 
 

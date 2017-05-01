@@ -53,7 +53,7 @@
             <td>
                 @Ajax.ActionLink("Edit", "UpdateStudentData", "Students", new { id = item.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "div", OnSuccess = "togglemodel()" }) |
                 @Ajax.ActionLink("Delete", "DeleteStudent", "Students", new { id = item.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "div", OnSuccess = "togglemodel()"  }) |
-                @Html.ActionLink("Details", "Test", "Students", new { id = item.Id }) 
+                @Ajax.ActionLink("Details", "Test", "Students", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "div", OnSuccess = "togglemodel()" }, new { id = item.Id }) 
             </td>
         </tr>
     }

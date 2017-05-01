@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <p> Do You Really Want to Delete That Student From The Table ? </p>
-                @Ajax.ActionLink("Delete", "DeleteStudentHere", "Students", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "div", OnSuccess = "togglemodel()" , HttpMethod = "POST"})
+                @Ajax.ActionLink("Delete", "DeleteStudentHere", "Students", new { id = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "StudentTable", OnSuccess = "togglemodel()" , HttpMethod = "POST"})
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
