@@ -19,6 +19,7 @@ namespace AdminstrationSysytem_v1.Controllers
         }
 
 
+
         [Authorize(Roles = "Instructor")]
         [HttpGet]
         public ActionResult GivePermission()
@@ -31,8 +32,8 @@ namespace AdminstrationSysytem_v1.Controllers
             var ListOfStudents = db.Students.Where(m => m.DepartmentId == InstructorDeprtmentId).ToList();
 
             var StudentsInDepOfIns = (from std in db.Students
-                                      from att in db.Attendance.Where(m=>m.StudentId == std.Id)
-                                      select new AttendanceModel() { name = std.Name , id = std.Id , IsPermitted = att.IsPermitted , NoOfPermissions = std.NoOfPermissions ,  GradeOfAbsence = std.GradeOfAbsence  }).ToList();
+                                      from att in db.Attendance.Where(m => m.StudentId == std.Id)
+                                      select new AttendanceModel() { name = std.Name, id = std.Id, IsPermitted = att.IsPermitted, NoOfPermissions = std.NoOfPermissions, GradeOfAbsence = std.GradeOfAbsence }).ToList();
 
 
             foreach (var item in ListOfStudents)
@@ -69,7 +70,7 @@ namespace AdminstrationSysytem_v1.Controllers
         {
             //var Attendance = db.Attendance.ToList();
             var Students = db.Students.ToList();
-            var date = DateTime.Now.Date;
+            DateTime date = DateTime.Now.Date;
             var PermittedStudent = new Attendance();
 
             foreach (string item in Request.Form.Keys)

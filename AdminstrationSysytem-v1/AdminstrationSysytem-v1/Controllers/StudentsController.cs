@@ -84,18 +84,20 @@ namespace AdminstrationSysytem_v1.Controllers
         [HttpGet]
         public ActionResult CraeteStudentData()
         {
+            var departments = db.Departments.ToList();
+            ViewBag.Deps = new SelectList(departments, "DepartmentId", "Name");
             return PartialView();
         }
 
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<ActionResult> CraeteStudentData(JoinViewModel model)
+        public async Task<ActionResult> CraeteStudentData(JoinViewModel model , int department)
         {
             var Students = db.Students.ToList();
             if (ModelState.IsValid)
             {
-                var user = new Student { Name = model.Name, UserName = model.Name, Email = model.Email, Address = model.Address, BD = model.BirthDate, UserAccessType = "Student" , IsActivated = true };
+                var user = new Student { Name = model.Name, UserName = model.Name, Email = model.Email, Address = model.Address, BD = model.BirthDate, UserAccessType = "Student" , IsActivated = true , GradeOfAbsence = 600 , NoOfPermissions = 0 , NoOfAbsenceDay = 0 };
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -106,12 +108,12 @@ namespace AdminstrationSysytem_v1.Controllers
                     var RoleAssigner = userManager.AddToRole(user.Id, "Student");
 
                     TempData["Student"] = user;
-                    return PartialView("List", Students);
+                    return RedirectToAction("StudentsList");
                 }
                 AddErrors(result);
 
             }
-            return PartialView("CraeteStudentData");
+            return PartialView("StudentsList");
         }
 
 
@@ -123,6 +125,12 @@ namespace AdminstrationSysytem_v1.Controllers
             return PartialView();
         }
 
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public ActionResult DeleteStudent()
+        {
+            return PartialView();
+        }
 
 
         //[Authorize(Roles = "Student")]

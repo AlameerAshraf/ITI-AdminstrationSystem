@@ -16,6 +16,7 @@ namespace AdminstrationSysytem_v1.Models
         {
             Student, Instructor
         }
+
     }
 
     
