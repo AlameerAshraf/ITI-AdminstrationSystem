@@ -1,15 +1,16 @@
 ﻿@model AdminstrationSysytem_v1.Models.ExternalLoginListViewModel
 @using Microsoft.Owin.Security
 
-<h4>Use another service to log in.</h4>
+<h4>Information Technology Institute</h4>
 <hr />
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
     if (loginProviders.Count() == 0) {
         <div>
             <p>
-                There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support logging in via external services.
+                <span class="glyphicon glyphicon-globe" aria-hidden="true"></span><br />
+                The ITI-Community collaboration works to empower and enable the community with its dynamic sectors with the latest ICT tools and trends, by innovative solutions for the country’s critical issues addressing a real need and challenge. All besides; raising the awareness about how Technology can enable the world's citizens to live a better life and facilitate their day-to-day life activities.
+                ITI introduced SHAPE IT to dig deeper in the dynamic community sectors, SHAPE IT breaks down to Safety, Health, Agriculture, Power, Education, and Information Technology. With the methodology of "Investigate - Ideate - Innovate - Communicate", the ITI interns first Investigate what the existing developmental problems are, then ideate & innovate by developing innovative solutions reflecting throughout prominent ICT applications and tools aiming to serve in conquering the proposed challenges, while creating a real impact by utilizing their ICT knowledge in serving a developmental cause.
             </p>
         </div>
     }
