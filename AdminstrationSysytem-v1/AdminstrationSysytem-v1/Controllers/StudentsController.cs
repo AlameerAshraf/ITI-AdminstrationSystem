@@ -120,16 +120,20 @@ namespace AdminstrationSysytem_v1.Controllers
 
         [Authorize(Roles ="Admin")]
         [HttpGet]
-        public ActionResult DeleteStudent()
+        public ActionResult DeleteStudent(string id)
         {
-            return PartialView();
+            Student student = db.Students.Find(id);
+            return PartialView(student);
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpGet]
-        public ActionResult DeleteStudent()
+        [HttpPost]
+        public ActionResult DeleteStudentHere(string id)
         {
-            return PartialView();
+            Student student = db.Students.Find(id);
+            db.Students.Remove(student);
+            db.SaveChanges();
+            return RedirectToAction("StudentsList","Students");
         }
 
 
