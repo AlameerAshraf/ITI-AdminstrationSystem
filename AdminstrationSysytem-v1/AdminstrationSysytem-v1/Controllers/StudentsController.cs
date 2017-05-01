@@ -74,9 +74,9 @@ namespace AdminstrationSysytem_v1.Controllers
         [HttpGet]
         public ActionResult UpdateStudentData(string id)
         {
+            Student student = db.Students.Find(id);
             var departments = db.Departments.ToList();
             ViewBag.Deps = new SelectList(departments, "DepartmentId", "Name");
-            Student student = db.Students.Find(id);
             //return Content(id);
             return PartialView("UpdateStudentData",student);
          
